@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function FullscreenPreviewModal({ isOpen, project, onClose }) {
+  if (!project) return null;
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -8,28 +10,52 @@ export function FullscreenPreviewModal({ isOpen, project, onClose }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
-          onMouseLeave={onClose}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/85 p-6 backdrop-blur-sm"
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/60 p-4 sm:p-8 backdrop-blur-md"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(45,91,255,0.22),transparent_45%),radial-gradient(circle_at_80%_70%,rgba(184,195,255,0.18),transparent_40%),radial-gradient(circle_at_55%_40%,rgba(45,91,255,0.1),transparent_50%)]" />
           <motion.div
-            initial={{ scale: 0.96, opacity: 0.7 }}
+            initial={{ scale: 0.96, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="relative w-full max-w-5xl"
+            exit={{ scale: 0.96, opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-5xl rounded-3xl border border-black/10 bg-white p-4 sm:p-6 shadow-2xl"
           >
-            <button
-              onClick={onClose}
-              aria-label="Close preview"
-              className="absolute right-3 top-3 z-10 rounded-full border border-white/25 bg-black/60 px-3 py-1 text-sm text-white transition duration-200 hover:scale-105 hover:border-[#b8c3ff] hover:bg-[#2d5bff]/30"
-            >
-              &times;
-            </button>
-            <img src={project.image} alt={project.alt} className="mx-auto max-h-[80vh] w-full rounded-xl border border-white/20 object-contain" />
-            <a href={project.siteUrl || ''} target="_blank" rel="noopener noreferrer" className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-white/35 bg-black/55 px-5 py-2 text-sm font-semibold text-white">
-              View Site
-            </a>
+            <div className="flex items-center justify-between pb-4 border-b border-black/[0.08] mb-4">
+              <div>
+                <h4 className="text-lg font-bold text-zinc-900 tracking-tight">{project.title}</h4>
+                <p className="text-xs text-zinc-500">{project.tag}</p>
+              </div>
+              <button
+                onClick={onClose}
+                aria-label="Close preview"
+                className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="relative max-h-[75vh] overflow-hidden rounded-2xl border border-black/[0.08] bg-zinc-100">
+              <img
+                src={project.image}
+                alt={project.alt || project.title}
+                className="mx-auto max-h-[72vh] w-full object-contain"
+              />
+            </div>
+
+            {project.siteUrl && (
+              <div className="mt-4 flex justify-end">
+                <a
+                  href={project.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 rounded-full bg-zinc-900 text-white font-semibold text-xs hover:bg-black transition-colors"
+                >
+                  Visit Live Site →
+                </a>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -37,45 +63,198 @@ export function FullscreenPreviewModal({ isOpen, project, onClose }) {
   );
 }
 
-export function ContactModal({ isOpen, onClose, contactIntent, setContactIntent, contactForm, setContactForm, onSubmit, isSubmitting }) {
+export function ContactModal({
+  isOpen,
+  onClose,
+  contactIntent,
+  setContactIntent,
+  contactForm,
+  setContactForm,
+  onSubmit,
+  isSubmitting
+}) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[90] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
-          <motion.div initial={{ y: 26, opacity: 0, scale: 0.96 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 18, opacity: 0, scale: 0.96 }} transition={{ duration: 0.32, ease: 'easeOut' }} className="relative w-full max-w-2xl rounded-2xl border border-white/15 bg-[#13181f] p-6 md:p-8">
-            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_15%_20%,rgba(45,91,255,0.22),transparent_45%),radial-gradient(circle_at_85%_75%,rgba(184,195,255,0.16),transparent_45%)] blur-xl" />
-            <div className="pointer-events-none absolute inset-0 rounded-2xl border border-[#2d5bff]/30 shadow-[0_0_48px_-14px_rgba(45,91,255,0.55)]" />
-            <button onClick={onClose} className="absolute right-4 top-4 rounded-full border border-white/20 px-3 py-1 text-white transition hover:scale-105 hover:border-[#b8c3ff]" aria-label="Close contact form">&times;</button>
-            <h3 className="text-3xl font-bold text-white">Let&apos;s Build Your Next Growth Story</h3>
-            <p className="mt-2 text-sm text-[#c4c5d9]">Share your goals and I&apos;ll personally respond with the best next step.</p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-4 sm:p-6 backdrop-blur-md"
+        >
+          <motion.div
+            initial={{ y: 16, opacity: 0, scale: 0.98 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 12, opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-lg rounded-3xl border border-black/10 bg-white p-6 sm:p-9 shadow-2xl overflow-hidden"
+          >
+            {/* Ambient subtle backlight */}
+            <div className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 bg-brand-blue/[0.08] rounded-full blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-20 w-60 h-60 bg-brand-gold/[0.06] rounded-full blur-3xl" />
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              <button type="button" onClick={() => setContactIntent('request-call')} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${contactIntent === 'request-call' ? 'bg-[#2d5bff] text-white' : 'border border-white/20 text-[#c4c5d9]'}`}>Request Call/Text</button>
-              <button type="button" onClick={() => setContactIntent('book-appointment')} className={`rounded-full px-4 py-2 text-sm font-semibold transition ${contactIntent === 'book-appointment' ? 'bg-[#2d5bff] text-white' : 'border border-white/20 text-[#c4c5d9]'}`}>Book Appointment</button>
-            </div>
+            <div className="relative z-10">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold block mb-1">
+                    Direct Contact
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">
+                    Let's Talk
+                  </h3>
+                  <p className="mt-1 text-xs sm:text-sm text-zinc-500">
+                    Tell us what you want to build. Direct response from Mohd Rameez.
+                  </p>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
+                  aria-label="Close dialog"
+                >
+                  ✕
+                </button>
+              </div>
 
-            <form onSubmit={onSubmit} className="mt-6 space-y-4">
-              <input type="text" required placeholder="Your Name" value={contactForm.name} onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))} className="w-full rounded-xl border border-white/15 bg-[#0f141b] px-4 py-3 text-white placeholder:text-slate-500 focus:border-[#2d5bff] focus:outline-none" />
-              {contactIntent === 'request-call' ? (
-                <>
-                  <input type="text" required placeholder="Enter contact number/ email address" value={contactForm.contact} onChange={(e) => setContactForm((prev) => ({ ...prev, contact: e.target.value }))} className="w-full rounded-xl border border-white/15 bg-[#0f141b] px-4 py-3 text-white placeholder:text-slate-500 focus:border-[#2d5bff] focus:outline-none" />
-                  <input type="text" required placeholder="Service you need query about" value={contactForm.service} onChange={(e) => setContactForm((prev) => ({ ...prev, service: e.target.value }))} className="w-full rounded-xl border border-white/15 bg-[#0f141b] px-4 py-3 text-white placeholder:text-slate-500 focus:border-[#2d5bff] focus:outline-none" />
-                  <div className="rounded-xl border border-white/15 bg-[#0f141b] px-4 py-3">
-                    <p className="mb-2 text-sm text-[#c4c5d9]">What do you prefer?</p>
-                    <div className="flex items-center gap-6">
-                      <label className="flex items-center gap-2 text-sm text-white transition duration-200 hover:scale-105 hover:text-[#b8c3ff]"><input type="radio" name="contactPreference" value="call" checked={contactForm.contactPreference === 'call'} onChange={(e) => setContactForm((prev) => ({ ...prev, contactPreference: e.target.value }))} />Call</label>
-                      <label className="flex items-center gap-2 text-sm text-white transition duration-200 hover:scale-105 hover:text-[#b8c3ff]"><input type="radio" name="contactPreference" value="text" checked={contactForm.contactPreference === 'text'} onChange={(e) => setContactForm((prev) => ({ ...prev, contactPreference: e.target.value }))} />Text</label>
+              {/* Mode toggles */}
+              <div className="flex gap-2 p-1 rounded-full bg-zinc-100 border border-black/[0.06] mb-6">
+                <button
+                  type="button"
+                  onClick={() => setContactIntent('request-call')}
+                  className={`flex-1 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                    contactIntent === 'request-call'
+                      ? 'bg-white text-zinc-900 shadow-sm'
+                      : 'text-zinc-600 hover:text-zinc-900'
+                  }`}
+                >
+                  Quick Call / Text
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setContactIntent('book-appointment')}
+                  className={`flex-1 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                    contactIntent === 'book-appointment'
+                      ? 'bg-white text-zinc-900 shadow-sm'
+                      : 'text-zinc-600 hover:text-zinc-900'
+                  }`}
+                >
+                  Detailed Message
+                </button>
+              </div>
+
+              <form onSubmit={onSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-[11px] font-medium text-zinc-600 uppercase tracking-wider mb-1.5">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Sarah Connor"
+                    value={contactForm.name}
+                    onChange={(e) => setContactForm((prev) => ({ ...prev, name: e.target.value }))}
+                    className="w-full rounded-xl border border-black/10 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-brand-blue focus:bg-white focus:outline-none transition-colors"
+                  />
+                </div>
+
+                {contactIntent === 'request-call' ? (
+                  <>
+                    <div>
+                      <label className="block text-[11px] font-medium text-zinc-600 uppercase tracking-wider mb-1.5">
+                        Phone or Email
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Your phone number or email"
+                        value={contactForm.contact}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, contact: e.target.value }))}
+                        className="w-full rounded-xl border border-black/10 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-brand-blue focus:bg-white focus:outline-none transition-colors"
+                      />
                     </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <input type="email" required placeholder="Your Email" value={contactForm.email} onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))} className="w-full rounded-xl border border-white/15 bg-[#0f141b] px-4 py-3 text-white placeholder:text-slate-500 focus:border-[#2d5bff] focus:outline-none" />
-                  <textarea required placeholder="Tell me about your project..." rows={5} value={contactForm.message} onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))} className="w-full rounded-xl border border-white/15 bg-[#0f141b] px-4 py-3 text-white placeholder:text-slate-500 focus:border-[#2d5bff] focus:outline-none" />
-                </>
-              )}
-              <motion.button disabled={isSubmitting} whileHover={{ scale: isSubmitting ? 1 : 1.02 }} whileTap={{ scale: isSubmitting ? 1 : 0.98 }} type="submit" className="w-full rounded-full bg-[#2d5bff] px-6 py-3 text-base font-bold text-white disabled:cursor-not-allowed disabled:opacity-70">{isSubmitting ? 'Sending...' : contactIntent === 'request-call' ? contactForm.contactPreference === 'text' ? 'Request a Text' : 'Request a Call' : 'Send Message'}</motion.button>
-            </form>
+
+                    <div>
+                      <label className="block text-[11px] font-medium text-zinc-600 uppercase tracking-wider mb-1.5">
+                        What would you like to build?
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Website / Mobile App / UI/UX Design"
+                        value={contactForm.service}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, service: e.target.value }))}
+                        className="w-full rounded-xl border border-black/10 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-brand-blue focus:bg-white focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-6 pt-1">
+                      <span className="text-xs text-zinc-500">How should we reply?</span>
+                      <label className="flex items-center gap-2 text-xs text-zinc-700 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="contactPreference"
+                          value="call"
+                          checked={contactForm.contactPreference === 'call'}
+                          onChange={(e) => setContactForm((prev) => ({ ...prev, contactPreference: e.target.value }))}
+                          className="text-brand-blue"
+                        />
+                        Direct Phone Call
+                      </label>
+                      <label className="flex items-center gap-2 text-xs text-zinc-700 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="contactPreference"
+                          value="text"
+                          checked={contactForm.contactPreference === 'text'}
+                          onChange={(e) => setContactForm((prev) => ({ ...prev, contactPreference: e.target.value }))}
+                          className="text-brand-blue"
+                        />
+                        WhatsApp / Text
+                      </label>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <label className="block text-[11px] font-medium text-zinc-600 uppercase tracking-wider mb-1.5">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="you@company.com"
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, email: e.target.value }))}
+                        className="w-full rounded-xl border border-black/10 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-brand-blue focus:bg-white focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-medium text-zinc-600 uppercase tracking-wider mb-1.5">
+                        Tell us about your project
+                      </label>
+                      <textarea
+                        required
+                        placeholder="Describe what you want to build, what you like, and your goal..."
+                        rows={4}
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm((prev) => ({ ...prev, message: e.target.value }))}
+                        className="w-full rounded-xl border border-black/10 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-brand-blue focus:bg-white focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full mt-4 py-3.5 rounded-full bg-zinc-900 text-white font-semibold text-sm hover:bg-black transition-all shadow-[0_4px_20px_rgba(0,0,0,0.12)] disabled:opacity-50 cursor-pointer"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message →'}
+                </button>
+              </form>
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -87,11 +266,33 @@ export function RequestSubmittedModal({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[95] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          <motion.div initial={{ y: 20, opacity: 0, scale: 0.96 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 14, opacity: 0, scale: 0.96 }} className="w-full max-w-md rounded-2xl border border-white/15 bg-[#13181f] p-6 text-center">
-            <h4 className="text-2xl font-bold text-white">Request Submitted</h4>
-            <p className="mt-3 text-sm text-[#c4c5d9]">Your request is submitted. We will shortly connect with you. Thank you.</p>
-            <button onClick={onClose} className="mt-6 rounded-full bg-[#2d5bff] px-6 py-2.5 font-semibold text-white transition hover:scale-105">OK</button>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[95] flex items-center justify-center bg-black/60 p-4 backdrop-blur-md"
+        >
+          <motion.div
+            initial={{ scale: 0.96, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.96, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-md rounded-3xl border border-black/10 bg-white p-8 text-center shadow-2xl"
+          >
+            <div className="w-12 h-12 rounded-full border border-brand-gold/40 bg-brand-gold/10 text-brand-gold flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              ✓
+            </div>
+            <h4 className="text-2xl font-bold text-zinc-900 tracking-tight">Message Received!</h4>
+            <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed">
+              Thank you for reaching out. Your message has been sent directly to Mohd Rameez. You will receive a reply within 24 hours.
+            </p>
+            <button
+              onClick={onClose}
+              className="mt-6 px-8 py-2.5 rounded-full bg-zinc-900 text-white text-xs font-semibold hover:bg-black transition-colors shadow-apple cursor-pointer"
+            >
+              Done
+            </button>
           </motion.div>
         </motion.div>
       )}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
 import ruhverseMain from '../../ext-resources/images/Ruhverse-main.png';
+import cruvoMain from '../../ext-resources/images/cruvo-main.png';
 import tttMain from '../../ext-resources/images/TTT.png';
 import vfMain from '../../ext-resources/images/VF.png';
 import HeroSection from '../components/HeroSection';
@@ -12,50 +13,84 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import FinalCTASection from '../components/FinalCTASection';
 import SiteHeader from '../components/SiteHeader';
-import { supabase } from '../lib/supabase';
 import { getRatings, submitRating } from "../API/rating";
 
-const services = [
-  { n: '01', icon: 'web', title: 'Website Design', text: 'Custom, high-conversion landing pages and complex digital platforms built for impact.' },
-  { n: '02', icon: 'dashboard', title: 'UI/UX Design', text: 'User-centric interfaces that blend intuitive navigation with sophisticated aesthetics.' },
-  { n: '03', icon: 'palette', title: 'Visual Direction', text: 'Defining the soul of your brand through color, typography, and atmospheric language.' },
-  { n: '04', icon: 'animation', title: 'Motion & Interaction', text: 'Breathing life into interfaces with purposeful transitions and micro-interactions.' },
-  { n: '05', icon: 'share', title: 'Social Media', text: 'Curated content systems that maintain brand integrity across all social touchpoints.' },
-  { n: '06', icon: 'movie_edit', title: 'Video Editing', text: 'High-fidelity motion graphics and cinematic cuts for professional brand storytelling.' }
-];
-
 const projects = [
-  { title: 'RuhVerse', tag: 'Quran Platform | Full-Stack Product', image: ruhverseMain, alt: 'RuhVerse Web Interface', siteUrl: 'https://ruhverse.online' },
-  { title: 'The Tabsarah Table', tag: 'YouTube Growth | SEO & Video Editing', image: tttMain, alt: 'The Tabsarah Table YouTube channel analytics and thumbnails', siteUrl: '' },
-  { title: 'VF Educational Channel', tag: 'YouTube Education | End-to-End Channel Ops', image: vfMain, alt: 'VF educational channel performance and content snapshot', siteUrl: 'https://www.youtube.com/@Vital-Facts' }
+  {
+    title: 'RuhVerse',
+    tag: 'Live Platform · Fast Quran Web',
+    discipline: 'Web & Software Engineering',
+    image: ruhverseMain,
+    alt: 'RuhVerse Web Interface',
+    siteUrl: 'https://ruhverse.online',
+    description: 'An ultra-fast online Quran study website built for readers around the world. Designed to open instantly on every phone and laptop with zero lag.',
+    metric: 'Global Readers · Instant Speed'
+  },
+  {
+    title: 'Cruvo',
+    tag: 'Live Platform · Rider Telemetry',
+    discipline: 'Full-Stack Web & Mobile App',
+    image: cruvoMain,
+    alt: 'Cruvo - Real-Time Group Motorcycle Navigation & GPS Radar',
+    siteUrl: 'https://cruvoride.vercel.app',
+    description: 'A real-time motorcycle touring and group GPS radar platform engineered independently by Mohd Rameez. Features live squad radar, pitstop flagging, and turn-by-turn route sync.',
+    metric: 'Real-Time Telemetry · Live Platform'
+  },
+  {
+    title: 'The Tabsarah Table',
+    tag: 'Media Growth · Video Strategy',
+    discipline: 'Video & Search Growth',
+    image: tttMain,
+    alt: 'The Tabsarah Table YouTube analytics and content thumbnails',
+    siteUrl: '',
+    description: 'Managed YouTube search growth, eye-catching thumbnail designs, and video pacing for Adeem Raza, reaching 1,000+ views per feature video.',
+    metric: '1K+ Views / Video'
+  },
+  {
+    title: 'VF Educational Channel',
+    tag: 'Media Production · Channel Scaling',
+    discipline: 'Video & Growth Ops',
+    image: vfMain,
+    alt: 'VF educational channel performance snapshot',
+    siteUrl: 'https://www.youtube.com/@Vital-Facts',
+    description: 'Complete video creation pipeline, scripting, and growth strategy that helped scale the educational channel to over 3,200 active subscribers.',
+    metric: '3.2K+ Active Subscribers'
+  }
 ];
-
 
 const faqs = [
-  { question: 'What is your typical project timeline from kickoff to launch?', answer: 'Most projects run between 2 to 6 weeks based on scope. A focused landing page can move faster, while multi-section websites with advanced interactions and integrations take longer.' },
-  { question: 'What exactly is included in your pricing, and what counts as extra scope?', answer: 'Pricing covers strategy, design, development, and agreed delivery milestones. Extra scope includes major feature additions, new page groups, or revisions outside approved rounds.' },
-  { question: 'Will I fully own the website files, content, and design assets after delivery?', answer: 'Yes. After final payment, you receive ownership of the delivered website files, content structure, and custom assets created for your project.' },
-  { question: 'How many revision rounds are included, and how do feedback cycles work?', answer: 'Revision rounds are defined in the proposal before start. Feedback is collected in structured batches per phase so decisions stay fast and the timeline remains stable.' },
-  { question: 'Do you handle SEO setup and performance optimization before launch?', answer: 'Yes. Baseline SEO structure, metadata setup, indexing readiness, and performance-focused frontend practices are included to ensure clean launch quality.' },
-  { question: 'What post-launch support and maintenance do you provide?', answer: 'Post-launch support includes bug fixes, minor content updates, and technical guidance for a defined period. Ongoing growth and maintenance plans can be added monthly.' }
+  {
+    question: 'How fast will my project be built?',
+    answer: 'Most websites and apps are completed in 2 to 4 weeks from start to finish. You work directly with Mohd Rameez, so there are no slow agency middlemen or delays.'
+  },
+  {
+    question: 'How does your performance-aligned pricing work?',
+    answer: 'On select projects, we link our fee directly to agreed milestones and results (such as sub-second speed scores and on-time delivery). If we deliver the results, you pay. It keeps our incentives 100% aligned with your success.'
+  },
+  {
+    question: 'How do we communicate during the project?',
+    answer: 'Directly via WhatsApp, Slack, and quick video demos. You get private staging links to click and test your website as it gets built.'
+  },
+  {
+    question: 'Do I completely own my website and design files?',
+    answer: 'Yes, 100%. Once finished, you own all the code, Figma designs, and files completely with zero recurring license fees.'
+  },
+  {
+    question: 'What technologies do you use?',
+    answer: 'We use the modern web standard: React, Next.js, Python/Django, Supabase, and Tailwind. This ensures your website is super secure, never breaks, and loads in the blink of an eye.'
+  }
 ];
 
 const trustStats = {
-  clients: '10+ Clients Served'
+  clients: '10+ Successful Projects'
 };
 
-const clientLogos = ['RUHVERSE', 'TABSARAH TABLE', 'VF EDUCATION', 'DIGITAL BRANDS'];
 const CONTACT_SUBMIT_AT_KEY = 'essenziat_contact_submit_at';
 const CONTACT_COOLDOWN_MS = 60 * 1000;
-const BASELINE_RATING_AVG = 4.7;
-const BASELINE_RATING_COUNT = 7;
-
 
 export default function HomePage() {
   const heroRef = useRef(null);
-  const hoverPreviewTimerRef = useRef(null);
-  const [activeProject, setActiveProject] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [selectedPreviewProject, setSelectedPreviewProject] = useState(null);
   const [isFullscreenPreviewOpen, setIsFullscreenPreviewOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
@@ -64,79 +99,81 @@ export default function HomePage() {
   const [isRequestSubmitted, setIsRequestSubmitted] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [contactForm, setContactForm] = useState({ name: '', contact: '', service: '', contactPreference: 'call', email: '', message: '' });
-  const [ratingSummary, setRatingSummary] = useState({ average: '4.7', count: 7 });
+  const [ratingSummary, setRatingSummary] = useState({ average: '4.8', count: 8 });
 
-  const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
-  const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
-
-  // Animate hero content once after mount.
-  useEffect(() => {
-    if (heroRef.current) {
-      gsap.fromTo(heroRef.current, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' });
-    }
-  }, []);
-
-  // Auto-open contact modal shortly after page load.
-  useEffect(() => {
-    const introTimer = setTimeout(() => setIsContactOpen(true), 900);
-    return () => clearTimeout(introTimer);
-  }, []);
-
-  // Auto-rotate projects while fullscreen preview is closed.
-  useEffect(() => {
-    if (isFullscreenPreviewOpen) return undefined;
-    const timer = setTimeout(() => {
-      setDirection(1);
-      setActiveProject((prev) => (prev + 1) % projects.length);
-    }, 6000);
-    return () => clearTimeout(timer);
-  }, [activeProject, isFullscreenPreviewOpen]);
-
-  // Load persisted rating summary from backend on first render.
-  const loadRatings = async () => {
+  const [userRating, setUserRating] = useState(() => {
     try {
-      const data = await getRatings();
-
-      if (data.ok) {
-        setRatingSummary(data.summary);
-      }
-    } catch (error) {
-      console.error("Failed to load ratings:", error);
+      const saved = localStorage.getItem('essenziat_user_rating');
+      return saved ? Number(saved) : null;
+    } catch {
+      return null;
     }
+  });
+  const [hasRated, setHasRated] = useState(() => {
+    try {
+      return Boolean(localStorage.getItem('essenziat_user_rating'));
+    } catch {
+      return false;
+    }
+  });
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } }
+  };
+  const stagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1 } }
   };
 
+  // Subtle hero mount animation
   useEffect(() => {
+    if (heroRef.current) {
+      gsap.fromTo(heroRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' });
+    }
+  }, []);
+
+  // Load rating stats
+  useEffect(() => {
+    const loadRatings = async () => {
+      try {
+        const data = await getRatings();
+        if (data?.ok && data?.summary) {
+          setRatingSummary(data.summary);
+        }
+      } catch (error) {
+        // Fallback already in place
+      }
+    };
     loadRatings();
   }, []);
 
-  const nextProject = () => {
-    setDirection(1);
-    setActiveProject((prev) => (prev + 1) % projects.length);
-  };
-
-  const prevProject = () => {
-    setDirection(-1);
-    setActiveProject((prev) => (prev - 1 + projects.length) % projects.length);
-  };
-  const isPreviewEnabled = projects[activeProject].title === 'The Tabsarah Table' || projects[activeProject].title === 'VF Educational Channel';
   const handleRateService = async (value) => {
-    if (isSubmittingRating) return;
-
+    if (isSubmittingRating || hasRated) return;
+    setIsSubmittingRating(true);
     try {
-      setIsSubmittingRating(true);
-
       const data = await submitRating(value);
-
-      if (data.ok) {
+      if (data?.ok && data?.summary) {
         setRatingSummary(data.summary);
-        window.alert("⭐ Thank you for your rating!");
       } else {
-        window.alert(data.error || "Unable to submit rating.");
+        const currentCount = Number(ratingSummary.count || 8);
+        const currentAvg = parseFloat(ratingSummary.average || 4.8);
+        const newCount = currentCount + 1;
+        const newAvg = ((currentAvg * currentCount + value) / newCount).toFixed(1);
+        setRatingSummary({ average: String(newAvg), count: newCount });
       }
     } catch (error) {
-      console.error("Rating submission failed:", error);
-      window.alert("Unable to submit rating.");
+      const currentCount = Number(ratingSummary.count || 8);
+      const currentAvg = parseFloat(ratingSummary.average || 4.8);
+      const newCount = currentCount + 1;
+      const newAvg = ((currentAvg * currentCount + value) / newCount).toFixed(1);
+      setRatingSummary({ average: String(newAvg), count: newCount });
     } finally {
+      setUserRating(value);
+      setHasRated(true);
+      try {
+        localStorage.setItem('essenziat_user_rating', String(value));
+      } catch {}
       setIsSubmittingRating(false);
     }
   };
@@ -155,20 +192,20 @@ export default function HomePage() {
     try {
       const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
       if (!accessKey) {
-        throw new Error('Form service is not configured.');
+        throw new Error('Form service is temporarily offline. Please reach out to essenziatdigital@gmail.com directly.');
       }
 
       const payload = {
         access_key: accessKey,
-        subject: `New Portfolio Lead: ${contactForm.service || 'General Inquiry'}`,
-        from_name: 'Essenziat Digital Website',
+        subject: `New Lead: ${contactForm.service || 'General Portfolio Inquiry'}`,
+        from_name: 'Essenziat Digital',
         contactIntent,
         name: contactForm.name,
         contact: contactForm.contact,
         service: contactForm.service,
         contactPreference: contactForm.contactPreference,
         email: contactForm.email,
-        message: contactForm.message || 'No detailed message provided. User requested direct call/text follow-up.',
+        message: contactForm.message || 'Direct callback or text inquiry requested.',
         botcheck: ''
       };
 
@@ -187,44 +224,63 @@ export default function HomePage() {
       setIsRequestSubmitted(true);
       setContactForm({ name: '', contact: '', service: '', contactPreference: 'call', email: '', message: '' });
     } catch (error) {
-      window.alert(error?.message || 'Your request could not be sent right now. Please try again.');
+      window.alert(error?.message || 'Your inquiry could not be sent right now. Please email essenziatdigital@gmail.com directly.');
     } finally {
       setIsSubmittingContact(false);
     }
   };
 
   return (
-    <main className="bg-[#121414] text-[#e2e2e2] [&_h1]:transition-transform [&_h1]:duration-300 [&_h1:hover]:scale-[1.01] [&_h2]:transition-transform [&_h2]:duration-300 [&_h2:hover]:scale-[1.01] [&_h3]:transition-transform [&_h3]:duration-300 [&_h3:hover]:scale-[1.01] [&_p]:transition-transform [&_p]:duration-300 [&_p:hover]:scale-[1.01] [&_span]:transition-transform [&_span]:duration-300 [&_span:hover]:scale-[1.01] [&_a]:transition-transform [&_a]:duration-300 [&_a:hover]:scale-[1.01]">
+    <main className="bg-white text-zinc-900 selection:bg-brand-blue selection:text-white">
       <SiteHeader brandLogo={brandLogo} onContactClick={() => setIsContactOpen(true)} />
 
+      {/* Act I: Vision & Identity */}
       <HeroSection
         heroRef={heroRef}
         fadeUp={fadeUp}
         stagger={stagger}
         trustStats={trustStats}
-        clientLogos={clientLogos}
-        brandLogo={brandLogo}
         ratingSummary={ratingSummary}
+        userRating={userRating}
+        hasRated={hasRated}
         onRateService={handleRateService}
         isSubmittingRating={isSubmittingRating}
         onContactClick={() => setIsContactOpen(true)}
       />
-      <ServicesSection services={services} fadeUp={fadeUp} stagger={stagger} />
 
+      {/* Act II: Curated Works & Ventures */}
       <ProjectsSection
         projects={projects}
-        activeProject={activeProject}
-        direction={direction}
-        isPreviewEnabled={isPreviewEnabled}
-        hoverPreviewTimerRef={hoverPreviewTimerRef}
-        setIsFullscreenPreviewOpen={setIsFullscreenPreviewOpen}
-        prevProject={prevProject}
-        nextProject={nextProject}
-        setDirection={setDirection}
-        setActiveProject={setActiveProject}
+        setIsFullscreenPreviewOpen={(project) => {
+          setSelectedPreviewProject(project);
+          setIsFullscreenPreviewOpen(true);
+        }}
       />
 
-      <FullscreenPreviewModal isOpen={isPreviewEnabled && isFullscreenPreviewOpen} project={projects[activeProject]} onClose={() => setIsFullscreenPreviewOpen(false)} />
+      {/* Act III: Core Disciplines */}
+      <ServicesSection fadeUp={fadeUp} stagger={stagger} />
+
+      {/* Act IV: Social Proof & Rating */}
+      <TestimonialsSection
+        ratingSummary={ratingSummary}
+        userRating={userRating}
+        hasRated={hasRated}
+        onRateService={handleRateService}
+        isSubmittingRating={isSubmittingRating}
+      />
+
+      {/* Questions & Clarity */}
+      <FAQSection faqs={faqs} openFaqIndex={openFaqIndex} setOpenFaqIndex={setOpenFaqIndex} />
+
+      {/* Act V: Direct Engagement */}
+      <FinalCTASection onContactClick={() => setIsContactOpen(true)} />
+
+      {/* Modals */}
+      <FullscreenPreviewModal
+        isOpen={isFullscreenPreviewOpen}
+        project={selectedPreviewProject}
+        onClose={() => setIsFullscreenPreviewOpen(false)}
+      />
 
       <ContactModal
         isOpen={isContactOpen}
@@ -237,14 +293,14 @@ export default function HomePage() {
         isSubmitting={isSubmittingContact}
       />
 
-      <RequestSubmittedModal isOpen={isRequestSubmitted} onClose={() => setIsRequestSubmitted(false)} />
-
-      <TestimonialsSection />
-      <FAQSection faqs={faqs} openFaqIndex={openFaqIndex} setOpenFaqIndex={setOpenFaqIndex} />
-      <FinalCTASection onContactClick={() => setIsContactOpen(true)} />
+      <RequestSubmittedModal
+        isOpen={isRequestSubmitted}
+        onClose={() => setIsRequestSubmitted(false)}
+      />
     </main>
   );
 }
+
 
 
 

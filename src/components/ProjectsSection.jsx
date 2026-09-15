@@ -1,109 +1,120 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ProjectsSection({
   projects,
-  activeProject,
-  direction,
-  isPreviewEnabled,
-  hoverPreviewTimerRef,
   setIsFullscreenPreviewOpen,
-  prevProject,
-  nextProject,
-  setDirection,
-  setActiveProject
 }) {
+  const [selectedTag, setSelectedTag] = useState('All');
+
+  const tags = ['All', 'Web Architecture', 'UI/UX Systems', 'Venture Engineering', 'Media Growth'];
+
+  const filteredProjects = selectedTag === 'All'
+    ? projects
+    : projects.filter((p) => p.category === selectedTag || p.tag.toLowerCase().includes(selectedTag.toLowerCase()));
+
   return (
-    <section className="bg-[#121414] px-6 py-[120px]">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="mb-16 text-5xl font-bold text-white md:text-[64px]">Things I've Designed</h2>
-        <div className="grid gap-8 rounded-2xl border border-white/10 bg-[#1a1c1c]/40 p-4 backdrop-blur-[20px] md:grid-cols-[320px_minmax(0,1fr)] md:p-6">
-          <div className="relative mx-auto w-[260px] md:mx-0 md:w-[300px]">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.a
-                key={projects[activeProject].title}
-                href={projects[activeProject].siteUrl}
-                target={projects[activeProject].siteUrl ? '_blank' : undefined}
-                rel={projects[activeProject].siteUrl ? 'noopener noreferrer' : undefined}
-                onHoverStart={() => {
-                  if (isPreviewEnabled) {
-                    if (hoverPreviewTimerRef.current) clearTimeout(hoverPreviewTimerRef.current);
-                    hoverPreviewTimerRef.current = setTimeout(() => {
-                      setIsFullscreenPreviewOpen(true);
-                    }, 500);
-                  }
-                }}
-                onHoverEnd={() => {
-                  if (hoverPreviewTimerRef.current) {
-                    clearTimeout(hoverPreviewTimerRef.current);
-                    hoverPreviewTimerRef.current = null;
-                  }
-                }}
-                custom={direction}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -22 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="group relative z-10 block h-[380px] w-[250px] overflow-hidden rounded-xl border border-white/15 bg-[#1e2020] md:h-[430px] md:w-[290px]"
+    <section id="work" className="relative py-24 sm:py-32 px-5 sm:px-8 bg-white border-t border-black/[0.06]">
+      {/* Background ambient lighting */}
+      <div className="pointer-events-none absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-brand-blue/[0.04] rounded-full blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-brand-gold/[0.03] rounded-full blur-[120px]" />
+
+      <div className="mx-auto max-w-6xl relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20 border-b border-black/[0.08] pb-10 sm:pb-12">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold block mb-3">
+              Act II · Real Projects We Built
+            </span>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900">
+              Real projects that deliver.
+            </h2>
+          </div>
+          <p className="text-zinc-600 max-w-md text-sm sm:text-base leading-relaxed">
+            A showcase of super fast websites, digital products, and growth systems engineered by Essenziat Digital.
+          </p>
+        </div>
+
+        {/* Ventures Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-black/20 hover:shadow-apple-lg overflow-hidden shadow-apple"
+            >
+              {/* Top meta */}
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <span className="text-[11px] font-mono tracking-wider text-zinc-400 uppercase">
+                  {`0${index + 1}`} · {project.discipline || 'Digital Product'}
+                </span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 border border-black/[0.06] text-zinc-700">
+                  {project.tag}
+                </span>
+              </div>
+
+              {/* Visual Frame */}
+              <div
+                onClick={() => setIsFullscreenPreviewOpen && setIsFullscreenPreviewOpen(project)}
+                className="relative w-full h-56 sm:h-72 mb-6 rounded-2xl overflow-hidden border border-black/[0.08] bg-zinc-100 cursor-pointer shadow-inner"
               >
-                <img
-                  src={projects[activeProject].image}
-                  alt={projects[activeProject].alt}
-                  className={`h-full w-full transition-all duration-500 ${projects[activeProject].title === 'The Tabsarah Table'
-                      ? 'object-cover group-hover:object-contain group-hover:scale-100'
-                      : 'object-cover group-hover:scale-[1.03]'
-                    }`}
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-                {projects[activeProject].siteUrl && (
-                  <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/30 bg-black/45 px-4 py-1.5 text-xs font-semibold tracking-wide text-white opacity-0 transition duration-300 group-hover:opacity-100">
-                    View Site
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.alt || project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 p-6 text-center">
+                    <div className="w-14 h-14 rounded-2xl border border-black/10 bg-white flex items-center justify-center text-zinc-900 font-bold text-lg mb-2 shadow-sm">
+                      {project.title.charAt(0)}
+                    </div>
+                    <span className="text-sm font-semibold text-zinc-800 tracking-wide">{project.title}</span>
+                    <span className="text-xs text-zinc-500 mt-1">Platform Architecture</span>
                   </div>
                 )}
-              </motion.a>
-            </AnimatePresence>
-          </div>
+                {/* Subtle vignette */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-30 group-hover:opacity-10 transition-opacity duration-300" />
+              </div>
 
-          <div className="flex flex-col justify-between">
-            <div>
-              <h3 className="text-[34px] font-semibold text-white">{projects[activeProject].title}</h3>
-              <span className="mt-3 inline-flex rounded-full border border-[#b8c3ff]/30 px-3 py-1 text-xs text-[#b8c3ff]">{projects[activeProject].tag.replace(/\uFFFD/g, '|')}</span>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-[#c4c5d9]">
-                {projects[activeProject].title === 'RuhVerse'
-                  ? 'A focused product experience for Quran reading, verse exploration, and smooth user flows with strong visual clarity and performance-first development.'
-                  : projects[activeProject].title === 'The Tabsarah Table'
-                    ? 'For The Tabsarah Table (channel owner: Adeem Raza), I managed SEO strategy and long-form video editing to improve early reach. A newly published long video crossed around 1K views, other edited uploads consistently passed 500+ views, and the channel reached 240 subscribers at that stage.'
-                    : 'For this educational channel, I managed the entire production and growth workflow: scripting, editing, upload operations, metadata planning, and SEO execution. Consistent publishing quality and discovery optimization helped scale the channel to 3.2K subscribers.'}
-              </p>
-            </div>
+              {/* Narrative Content */}
+              <div>
+                <div className="flex items-baseline justify-between gap-4 mb-2">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 group-hover:text-brand-blue transition-colors">
+                    {project.title}
+                  </h3>
+                  {project.siteUrl && (
+                    <a
+                      href={project.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-brand-blue hover:text-brand-blueDark transition-colors shrink-0"
+                    >
+                      <span>Visit Live</span>
+                      <span className="text-xs">→</span>
+                    </a>
+                  )}
+                </div>
 
-            <div className="mt-8 flex items-center gap-3">
-              <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={prevProject} className="rounded-full border border-white/20 p-2.5 text-white" aria-label="Previous project">
-                &#8592;
-              </motion.button>
-              <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={nextProject} className="rounded-full bg-[#2d5bff] p-2.5 text-white" aria-label="Next project">
-                &#8594;
-              </motion.button>
-            </div>
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-6">
+                  {project.description}
+                </p>
 
-            <div className="mt-6 flex items-center gap-2">
-              {projects.map((project, index) => (
-                <button
-                  key={project.title}
-                  onClick={() => {
-                    setDirection(index > activeProject ? 1 : -1);
-                    setActiveProject(index);
-                    setIsFullscreenPreviewOpen(false);
-                  }}
-                  className={`h-2.5 rounded-full transition-all ${activeProject === index ? 'w-8 bg-[#2d5bff]' : 'w-2.5 bg-white/35'}`}
-                  aria-label={`Go to ${project.title}`}
-                />
-              ))}
-            </div>
-          </div>
+                {/* Outcome metrics bar */}
+                {project.metric && (
+                  <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500">
+                    <span>Key Result:</span>
+                    <span className="font-semibold text-zinc-800 tracking-tight">{project.metric}</span>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
-

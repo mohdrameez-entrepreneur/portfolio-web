@@ -1,83 +1,175 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import ruhverseLogo from '../../ext-resources/logos/RuhVerse.jpg';
-import tabsarahLogo from '../../ext-resources/logos/Tabsarah Table.jpeg';
-import vfLogo from '../../ext-resources/logos/VF LOGO 3.png';
-import verdripLogo from '../../ext-resources/logos/Verdrip.jpeg';
+import founderImage from '../../ext-resources/images/founder.jpg';
 
-export default function HeroSection({ heroRef, fadeUp, stagger, trustStats, clientLogos, brandLogo, ratingSummary, onRateService, isSubmittingRating, onContactClick }) {
-  const backgroundLogos = [
-    { src: ruhverseLogo, alt: 'RuhVerse logo' },
-    { src: tabsarahLogo, alt: 'Tabsarah Table logo' },
-    { src: vfLogo, alt: 'Vital Facts logo' },
-    { src: verdripLogo, alt: 'Verdrip logo' }
-  ];
-  const slidingLogos = [...backgroundLogos, ...backgroundLogos];
+export default function HeroSection({
+  heroRef,
+  fadeUp,
+  stagger,
+  trustStats,
+  ratingSummary,
+  userRating,
+  hasRated,
+  onRateService,
+  isSubmittingRating,
+  onContactClick
+}) {
+  const [imageError, setImageError] = useState(false);
+  const [hoveredStar, setHoveredStar] = useState(0);
+
+  const displayStars = hoveredStar || userRating || Math.round(parseFloat(ratingSummary?.average || 4.8));
 
   return (
-    <motion.section initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={stagger} className="relative flex min-h-screen items-start justify-center overflow-hidden px-6 pb-16 pt-28">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2d5bff]/10 blur-[120px]" />
-      <motion.div ref={heroRef} className="relative z-10 mx-auto max-w-5xl text-center">
-        <motion.span whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }} variants={fadeUp} className="mb-8 block text-xs uppercase tracking-[0.3em] text-[#b8c3ff]">Architecture of the Digital Age</motion.span>
-        <div className="relative mb-8">
-          <img src={brandLogo} alt="" aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full object-cover opacity-20 blur-2xl md:h-72 md:w-72" />
-          <motion.h1 whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }} variants={fadeUp} className="relative z-10 text-6xl font-extrabold leading-[1.05] text-white md:text-[120px]">
-            Strategy.<br />
-            <span className="bg-gradient-to-r from-[#b8c3ff] to-blue-400 bg-clip-text text-transparent">Design. Growth.</span>
-          </motion.h1>
-        </div>
-        <motion.p whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }} variants={fadeUp} className="mx-auto mb-12 max-w-2xl text-lg text-[#c4c5d9]">
-          We craft visionary digital experiences for brands that demand more than just a presence. High-performance design meets technical precision.
-        </motion.p>
-        <motion.div variants={fadeUp} className="flex flex-col justify-center gap-6 md:flex-row">
-          <motion.button onClick={onContactClick} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} className="rounded-full bg-[#2d5bff] px-10 py-5 text-lg font-bold text-white">Start Your Project</motion.button>
-          <motion.button onClick={onContactClick} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} className="rounded-full border border-white/20 px-10 py-5 text-lg font-bold text-white">Work With Us</motion.button>
+    <section ref={heroRef} className="relative min-h-[85vh] flex flex-col items-center justify-center pt-28 sm:pt-36 pb-16 px-5 sm:px-8 overflow-hidden bg-white">
+      {/* Subtle light ambient radial lights */}
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-brand-blue/[0.05] rounded-full blur-[140px]" />
+      <div className="pointer-events-none absolute top-1/3 left-1/3 w-[450px] h-[280px] bg-brand-gold/[0.04] rounded-full blur-[120px]" />
+
+      {/* Main Storytelling Container */}
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={stagger}
+        className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center"
+      >
+        {/* Simple & Clear Results Badge */}
+        <motion.div
+          variants={fadeUp}
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-black/[0.08] bg-zinc-50 mb-6 shadow-2xs"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue" />
+          </span>
+          <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-zinc-700">
+            Performance-First Engineering · 2026
+          </span>
         </motion.div>
-        <motion.p whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }} variants={fadeUp} className="mx-auto mt-6 max-w-2xl text-sm font-medium text-[#b8c3ff]">
-          Performance-first partnership: we charge full payment when your project delivers real results.
+
+        {/* Professional, Punchy & Magnetic Headline */}
+        <motion.h1
+          variants={fadeUp}
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.08] mb-5 text-balance"
+        >
+          High-Performance Web. <br />
+          <span className="bg-gradient-to-r from-zinc-900 via-zinc-700 to-brand-blue bg-clip-text text-transparent">
+            Engineered for Results.
+          </span>
+        </motion.h1>
+
+        {/* Short, Professional Subtitle with Performance Alignment */}
+        <motion.p
+          variants={fadeUp}
+          className="text-sm sm:text-base md:text-lg text-zinc-600 max-w-xl font-normal leading-relaxed mb-6 text-balance"
+        >
+          We engineer ultra-fast web platforms and applications built to load in under 1 second. On qualified projects, our pricing directly aligns with verified speed and performance milestones.
         </motion.p>
-        <motion.div variants={fadeUp} className="relative mx-auto mt-10 w-full max-w-3xl overflow-hidden rounded-full border border-white/15 bg-[#0f131a]/70 px-6 py-3">
-          <motion.div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 flex w-[200%] items-center gap-6 px-6 opacity-20"
-            animate={{ x: ['-50%', '0%'] }}
-            transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+
+        {/* Simple Quest Pills */}
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-wrap items-center justify-center gap-2 mb-8"
+        >
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-900 text-white text-xs font-bold shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
+            Main Quest: Full-Stack Web & Software
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/[0.06] text-zinc-700 text-xs font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
+            Side Quests: UI/UX & Mobile Design
+          </span>
+        </motion.div>
+
+        {/* Action CTAs */}
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-col sm:flex-row items-center gap-3.5 mb-10 w-full sm:w-auto"
+        >
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={onContactClick}
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-zinc-900 text-white font-semibold text-sm hover:bg-black transition-all shadow-[0_4px_20px_rgba(0,0,0,0.12)] cursor-pointer"
           >
-            {slidingLogos.map((logo, index) => (
-              <img
-                key={`${logo.alt}-${index}`}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-9 w-9 shrink-0 rounded-full object-cover blur-[0.4px] md:h-10 md:w-10"
-              />
-            ))}
-          </motion.div>
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-14 w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2d5bff]/25 blur-2xl" />
-          <div className="relative z-10 flex items-center justify-center gap-5 text-sm md:text-base">
-            <span className="font-semibold text-white">{trustStats.clients}</span>
-            <span className="text-white/35">|</span>
-            <span className="font-semibold text-white">{ratingSummary.average}/5 Average Rating ({ratingSummary.count})</span>
+            Start a Project →
+          </motion.button>
+          <a
+            href="#work"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-black/10 bg-white text-zinc-800 font-medium text-sm hover:bg-zinc-50 hover:border-black/20 transition-all shadow-2xs text-center"
+          >
+            See Our Work ↓
+          </a>
+        </motion.div>
+
+        {/* Founder & Trust Capsule with Real Photo */}
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-col items-center gap-3"
+        >
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3.5 px-4 py-2.5 rounded-full border border-black/[0.08] bg-zinc-50/90 shadow-2xs text-xs text-zinc-600 hover:border-black/20 transition-colors">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-full overflow-hidden border border-black/10 bg-white shrink-0 shadow-inner ring-1 ring-black/5">
+                {!imageError && founderImage ? (
+                  <img
+                    src={founderImage}
+                    alt="Mohd Rameez"
+                    onError={() => setImageError(true)}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-white text-[9px] font-bold">
+                    MR
+                  </div>
+                )}
+              </div>
+              <span className="font-semibold text-zinc-900">Mohd Rameez</span>
+              <span className="text-zinc-400">·</span>
+              <span className="text-brand-blue font-medium">Founder of Essenziat Digital</span>
+            </div>
+
+            <div className="hidden sm:block text-zinc-300">|</div>
+
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-zinc-700">{trustStats.clients || '10+ High-Growth Projects'}</span>
+              <span className="text-zinc-400">·</span>
+              <span className="text-brand-gold font-semibold flex items-center gap-0.5">
+                ★ {ratingSummary?.average || '4.8'}/5 ({ratingSummary?.count || 8})
+              </span>
+            </div>
+          </div>
+
+          {/* Interactive Rating Option */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-black/[0.06] bg-white text-xs shadow-2xs">
+            <span className="text-zinc-500 font-medium text-[11px]">
+              {hasRated ? `Thanks for rating ${userRating}★!` : 'Rate our craft:'}
+            </span>
+            <div
+              className="flex items-center gap-0.5"
+              onMouseLeave={() => setHoveredStar(0)}
+            >
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  disabled={isSubmittingRating || hasRated}
+                  onMouseEnter={() => !hasRated && setHoveredStar(star)}
+                  onClick={() => onRateService(star)}
+                  className={`text-base leading-none transition-all duration-150 p-0.5 ${
+                    star <= displayStars ? 'text-brand-gold' : 'text-zinc-300'
+                  } ${!hasRated ? 'cursor-pointer hover:scale-125' : 'cursor-default'}`}
+                  aria-label={`Rate ${star} out of 5 stars`}
+                >
+                  ★
+                </button>
+              ))}
+            </div>
+            {isSubmittingRating && (
+              <span className="text-[10px] font-mono text-brand-blue animate-pulse">Saving...</span>
+            )}
           </div>
         </motion.div>
-        <motion.div variants={fadeUp} className="mt-4 flex items-center justify-center gap-3">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b8c3ff]">Rate Service</span>
-          <div className="flex items-end gap-1.5">
-            {[1, 2, 3, 4, 5].map((value) => (
-              <button
-                key={value}
-                type="button"
-                disabled={isSubmittingRating}
-                onClick={() => onRateService(value)}
-                className={`text-[#ffd36b] transition hover:scale-110 disabled:cursor-not-allowed disabled:opacity-60 ${
-                  value === 3 ? 'text-4xl' : value === 2 || value === 4 ? 'text-3xl' : 'text-2xl'
-                }`}
-                aria-label={`Rate ${value} out of 5`}
-              >
-                &#9733;
-              </button>
-            ))}
-          </div>
-        </motion.div>
+
       </motion.div>
-    </motion.section>
+    </section>
   );
 }

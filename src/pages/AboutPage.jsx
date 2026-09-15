@@ -1,138 +1,220 @@
 import { useState } from 'react';
 import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
-import ruhverseMain from '../../ext-resources/images/Ruhverse-main.png';
-import tttMain from '../../ext-resources/images/TTT.png';
-import vfMain from '../../ext-resources/images/VF.png';
+import founderImage from '../../ext-resources/images/founder.jpg';
 import SiteHeader from '../components/SiteHeader';
+import { ContactModal, RequestSubmittedModal } from '../components/Modals';
+
+const ETHOS_PILLARS = [
+  {
+    number: '01',
+    title: 'Sub-Second Speed',
+    description: 'We reject bloated frameworks and slow templates. Every application is engineered to open in under 1 second with instant responsiveness.'
+  },
+  {
+    number: '02',
+    title: 'Performance Alignment',
+    description: 'For qualified projects, fee structures connect directly to verified performance, speed scores, and delivered milestones.'
+  },
+  {
+    number: '03',
+    title: 'Pure Aesthetics',
+    description: 'Engineered with high-precision standards: generous whitespace, obsidian typography, and intuitive interfaces that customers love using.'
+  }
+];
 
 export default function AboutPage() {
-  const [expandedMedia, setExpandedMedia] = useState(null);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isRequestSubmitted, setIsRequestSubmitted] = useState(false);
+  const [contactIntent, setContactIntent] = useState('request-call');
+  const [contactForm, setContactForm] = useState({ name: '', contact: '', service: '', contactPreference: 'call', email: '', message: '' });
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmittingContact(true);
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey) throw new Error('Service offline');
+
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `Inquiry from About Page: ${contactForm.service || 'Collaboration'}`,
+          from_name: 'Essenziat Digital About Page',
+          contactIntent,
+          name: contactForm.name,
+          contact: contactForm.contact,
+          service: contactForm.service,
+          contactPreference: contactForm.contactPreference,
+          email: contactForm.email,
+          message: contactForm.message || 'Direct reachout requested.'
+        })
+      });
+      setIsContactOpen(false);
+      setIsRequestSubmitted(true);
+    } catch (err) {
+      window.alert('Transmission error. Please email essenziatdigital@gmail.com directly.');
+    } finally {
+      setIsSubmittingContact(false);
+    }
+  };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#121414] px-6 pb-16 pt-32 text-[#e2e2e2]">
-      <div className="pointer-events-none absolute left-[-120px] top-[180px] h-[320px] w-[320px] rounded-full bg-[#2d5bff]/20 blur-[95px]" />
-      <div className="pointer-events-none absolute right-[-140px] top-[520px] h-[360px] w-[360px] rounded-full bg-[#2d5bff]/18 blur-[110px]" />
-      <div className="pointer-events-none absolute bottom-[120px] left-1/2 h-[300px] w-[520px] -translate-x-1/2 rounded-full bg-[#2d5bff]/12 blur-[120px]" />
+    <main className="relative min-h-screen bg-white text-zinc-900 px-5 sm:px-8 pt-28 sm:pt-36 pb-24 selection:bg-brand-blue selection:text-white">
+      {/* Background ambient lighting */}
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-blue/[0.04] rounded-full blur-[160px]" />
+      <div className="pointer-events-none absolute top-1/3 right-1/4 w-[350px] h-[250px] bg-brand-gold/[0.03] rounded-full blur-[140px]" />
 
-      <SiteHeader brandLogo={brandLogo} onContactClick={() => {}} />
+      <SiteHeader brandLogo={brandLogo} onContactClick={() => setIsContactOpen(true)} />
 
-      <section className="relative z-10 mx-auto max-w-6xl space-y-8">
-        <div className="rounded-2xl border border-white/10 bg-[#1a1c1c]/50 p-8 shadow-[0_16px_55px_rgba(45,91,255,0.12)] backdrop-blur-xl md:p-12">
-          <p className="text-xs uppercase tracking-[0.22em] text-slate-400">The Story</p>
-          <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">About Essenziat Digital</h1>
-          <p className="mt-4 text-sm font-medium text-slate-300">
-            Led by <span className="font-semibold text-white">Mohd Rameez</span>, CEO and Founder.
-          </p>
-          <p className="mt-6 max-w-4xl text-base leading-relaxed text-[#c4c5d9]">
-            Essenziat Digital began as a personal commitment to bridge creative storytelling with technical discipline. I saw too many brands invest in visuals that looked impressive but did not convert, and too many websites that were functional but had no emotional pull. This studio was built to close that gap through focused design, conversion-aware development, and messaging that moves people to act.
-          </p>
-          <p className="mt-4 max-w-4xl text-base leading-relaxed text-[#c4c5d9]">
-            Today, I partner with founders, creators, and growing teams who need more than digital decoration. Every project is approached as a business system: brand clarity at the top, strong user journey in the middle, and measurable outcomes at the end. The public face is premium creative direction; the engine underneath is a <span className="font-semibold text-white">performance-based agency mindset</span> where decisions are guided by attention, trust, and conversion quality.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-2xl border border-white/10 bg-[#1a1c1c]/45 p-6 shadow-[0_12px_40px_rgba(45,91,255,0.10)] backdrop-blur-lg">
-            <h2 className="text-xl font-semibold text-white">Why This Exists</h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#c4c5d9]">
-              To build digital experiences that do not stop at aesthetics. The objective is clear communication, sharper positioning, and a stronger conversion path for every brand touchpoint.
-            </p>
-          </article>
-          <article className="rounded-2xl border border-white/10 bg-[#1a1c1c]/45 p-6 shadow-[0_12px_40px_rgba(45,91,255,0.10)] backdrop-blur-lg">
-            <h2 className="text-xl font-semibold text-white">How I Work</h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#c4c5d9]">
-              Each project runs through strategy, narrative mapping, visual system design, build execution, and launch calibration with practical checks for SEO, performance, and maintainability.
-            </p>
-          </article>
-          <article className="rounded-2xl border border-white/10 bg-[#1a1c1c]/45 p-6 shadow-[0_12px_40px_rgba(45,91,255,0.10)] backdrop-blur-lg">
-            <h2 className="text-xl font-semibold text-white">What Matters Most</h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#c4c5d9]">
-              Clean delivery, measurable progress, and assets that scale. The goal is long-term value, not one-time design output that fades after launch.
-            </p>
-          </article>
-        </div>
-
-        <div className="rounded-2xl border border-white/10 bg-[#1a1c1c]/50 p-8 shadow-[0_16px_55px_rgba(45,91,255,0.12)] backdrop-blur-xl md:p-10">
-          <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Commercial Philosophy</p>
-          <h2 className="mt-3 text-3xl font-semibold text-white">Aligned With Outcomes, Not Noise</h2>
-          <p className="mt-4 max-w-4xl text-base leading-relaxed text-[#c4c5d9]">
-            We structure engagements so compensation is tied to real delivery and verified progress, not activity for its own sake. In practice, the major value fee is connected to agreed milestones and outcomes, while we often absorb extra effort on our side when execution needs more depth than expected.
-          </p>
-          <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-400">
-            Final commercial terms are defined per project scope and proposal.
+      <div className="relative z-10 mx-auto max-w-3xl">
+        {/* Header Storyline */}
+        <div className="mb-12 sm:mb-16 text-center">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-5 shadow-2xs">
+            The Story & Ethos
+          </span>
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 mb-4 text-balance">
+            Crafted with intention.
+          </h1>
+          <p className="text-base sm:text-lg text-zinc-600 max-w-lg mx-auto leading-relaxed text-balance">
+            A performance-first digital studio founded by Mohd Rameez, dedicated to building sub-second software with precision engineering and refined modern minimalism.
           </p>
         </div>
 
-        <div className="grid gap-6 rounded-2xl border border-white/10 bg-[#1a1c1c]/50 p-8 shadow-[0_16px_55px_rgba(45,91,255,0.12)] backdrop-blur-xl md:grid-cols-2 md:p-10">
-          <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-slate-400">What I Build</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">A Complete Growth-Oriented Creative Stack</h2>
-            <p className="mt-4 text-base leading-relaxed text-[#c4c5d9]">
-              Core work spans website design and development, UI/UX systems, visual direction, motion-aware interaction design, SEO-ready content structure, and production-grade video editing pipelines.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-[#c4c5d9]">
-              Instead of treating web and content as separate functions, I build them as one connected system so the brand message, page flow, and media execution reinforce each other at every stage of the user journey.
-            </p>
+        {/* Founder Spotlight Card */}
+        <div className="relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-10 mb-14 shadow-apple-lg overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-full overflow-hidden border-2 border-black/10 bg-zinc-100 shadow-apple ring-4 ring-black/[0.03]">
+              <img
+                src={founderImage}
+                alt="Mohd Rameez"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <div className="flex-1 text-center sm:text-left">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-blue block mb-1">
+                Owner & Lead Engineer
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 mb-2">
+                Mohd Rameez
+              </h2>
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
+                I lead web and software engineering at Essenziat Digital. We architect clean, high-speed digital products that open instantly, eliminate bloat, and align with performance milestones.
+              </p>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 text-xs font-medium text-zinc-700 pt-3.5 border-t border-black/[0.06]">
+                <span className="font-semibold text-zinc-900">Founder of Essenziat Digital</span>
+                <span className="text-zinc-300">·</span>
+                <span>Creator of RuhVerse</span>
+                <span className="text-zinc-300">·</span>
+                <span>Creator of Cruvo</span>
+              </div>
+            </div>
           </div>
-          <div className="overflow-hidden rounded-xl border border-white/10 shadow-[0_10px_36px_rgba(45,91,255,0.18)]">
-            <div className="group relative">
-              <img src={ruhverseMain} alt="RuhVerse project interface" className="h-full w-full object-cover" />
-              <a
-                href="https://ruhverse.online"
-                target="_blank"
-                rel="noreferrer"
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/35 bg-black/55 px-4 py-2 text-sm font-semibold text-white"
+        </div>
+
+        {/* Three Core Pillars */}
+        <div className="mb-14">
+          <div className="text-center mb-8">
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-1">
+              Core Principles
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">
+              How we think & build.
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {ETHOS_PILLARS.map((pillar) => (
+              <div
+                key={pillar.number}
+                className="p-6 rounded-3xl border border-black/[0.08] bg-zinc-50/70 flex flex-col justify-between hover:bg-white hover:shadow-apple transition-all duration-300"
               >
-                Visit Site
-              </a>
-            </div>
+                <div>
+                  <span className="text-xs font-mono font-bold text-brand-gold block mb-2">
+                    {pillar.number}
+                  </span>
+                  <h4 className="text-base font-bold text-zinc-900 mb-2">
+                    {pillar.title}
+                  </h4>
+                  <p className="text-xs text-zinc-600 leading-relaxed font-normal">
+                    {pillar.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#1a1c1c]/75 via-[#1b1e22]/70 to-[#1a1c1c]/75 p-8 shadow-[0_20px_65px_rgba(45,91,255,0.18)] backdrop-blur-xl md:p-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
+        {/* Flagship Ventures Reference Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
+          <div className="p-5 sm:p-6 rounded-3xl border border-black/[0.08] bg-white shadow-sm flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Images And Video Work</p>
-              <h2 className="mt-3 text-3xl font-semibold text-white">Visual Storytelling Across Product And Content</h2>
+              <span className="text-xs font-mono font-semibold text-brand-blue block">Live Platform</span>
+              <h4 className="text-base font-bold text-zinc-900">RuhVerse</h4>
+              <p className="text-xs text-zinc-500">Global Quran Web Study</p>
             </div>
-            <a href="https://www.youtube.com/@Vital-Facts" target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-blue-300 transition hover:border-blue-300/50 hover:text-blue-200">
-              Watch Live Examples
+            <a
+              href="https://ruhverse.online"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 rounded-full bg-zinc-900 text-white text-xs font-semibold hover:bg-black transition-colors shrink-0 shadow-2xs"
+            >
+              Visit →
             </a>
           </div>
 
-          <p className="mt-4 max-w-4xl text-base leading-relaxed text-[#c4c5d9]">
-            This layer combines static design credibility with video-led momentum. Product frames, thumbnails, editing rhythm, and channel packaging are shaped as one growth system to improve discoverability, retention, and trust.
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-12">
-            <button type="button" onClick={() => setExpandedMedia({ src: tttMain, alt: 'The Tabsarah Table content visuals' })} className="group overflow-hidden rounded-xl border border-white/10 text-left shadow-[0_10px_34px_rgba(45,91,255,0.16)] md:col-span-4" aria-label="Expand The Tabsarah Table image">
-              <img src={tttMain} alt="The Tabsarah Table content visuals" className="h-56 w-full object-cover transition-transform duration-300 delay-500 group-hover:scale-[1.1]" />
-            </button>
-            <button type="button" onClick={() => setExpandedMedia({ src: vfMain, alt: 'VF educational channel performance visuals' })} className="group overflow-hidden rounded-xl border border-white/10 text-left shadow-[0_10px_34px_rgba(45,91,255,0.16)] md:col-span-4" aria-label="Expand VF educational channel image">
-              <img src={vfMain} alt="VF educational channel performance visuals" className="h-56 w-full object-cover transition-transform duration-300 delay-500 group-hover:scale-[1.1]" />
-            </button>
-            <div className="rounded-xl border border-white/10 bg-[#141718]/90 p-5 shadow-[0_10px_34px_rgba(45,91,255,0.14)] md:col-span-4">
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Editorial Intent</p>
-              <h3 className="mt-3 text-xl font-semibold text-white">Performance-Led Video Direction</h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#c4c5d9]">
-                Each piece is shaped around opening-hook strength, narrative pacing, and retention checkpoints so creative output supports measurable channel progression.
-              </p>
+          <div className="p-5 sm:p-6 rounded-3xl border border-black/[0.08] bg-white shadow-sm flex items-center justify-between gap-4">
+            <div>
+              <span className="text-xs font-mono font-semibold text-brand-gold block">Live Platform</span>
+              <h4 className="text-base font-bold text-zinc-900">Cruvo</h4>
+              <p className="text-xs text-zinc-500">Real-Time Rider GPS Radar</p>
             </div>
+            <a
+              href="https://cruvoride.vercel.app"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 rounded-full bg-zinc-900 text-white text-xs font-semibold hover:bg-black transition-colors shrink-0 shadow-2xs"
+            >
+              Visit →
+            </a>
           </div>
-
         </div>
-      </section>
 
-      {expandedMedia && (
-        <button
-          type="button"
-          onClick={() => setExpandedMedia(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6"
-          aria-label="Close expanded image"
-        >
-          <img src={expandedMedia.src} alt={expandedMedia.alt} className="max-h-[88vh] w-auto max-w-[92vw] rounded-xl border border-white/20 object-contain" />
-        </button>
-      )}
+        {/* Minimalist CTA Box */}
+        <div className="p-8 sm:p-10 rounded-3xl border border-black/[0.08] bg-zinc-50 text-center">
+          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 mb-2">
+            Let's build something exceptional.
+          </h3>
+          <p className="text-xs sm:text-sm text-zinc-600 max-w-md mx-auto mb-6">
+            Speak directly with Mohd Rameez about your project and goals.
+          </p>
+          <button
+            onClick={() => setIsContactOpen(true)}
+            className="px-8 py-3.5 rounded-full bg-zinc-900 text-white text-xs sm:text-sm font-semibold hover:bg-black transition-colors shadow-apple cursor-pointer"
+          >
+            Start a Conversation →
+          </button>
+        </div>
+      </div>
+
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        contactIntent={contactIntent}
+        setContactIntent={setContactIntent}
+        contactForm={contactForm}
+        setContactForm={setContactForm}
+        onSubmit={handleContactSubmit}
+        isSubmitting={isSubmittingContact}
+      />
+
+      <RequestSubmittedModal
+        isOpen={isRequestSubmitted}
+        onClose={() => setIsRequestSubmitted(false)}
+      />
     </main>
   );
 }
