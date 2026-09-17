@@ -106,10 +106,6 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 text-xs font-medium text-zinc-700 pt-3.5 border-t border-black/[0.06]">
                 <span className="font-semibold text-zinc-900">Founder of Essenziat Digital</span>
-                <span className="text-zinc-300">·</span>
-                <span>Creator of RuhVerse</span>
-                <span className="text-zinc-300">·</span>
-                <span>Creator of Cruvo</span>
               </div>
             </div>
           </div>
