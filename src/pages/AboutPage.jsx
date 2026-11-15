@@ -98,7 +98,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
-                    Founder · Lead Engineer
+                    Founder · Principal Architect & Engineer
                   </span>
                   <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
                     Mohd Rameez
@@ -106,14 +106,25 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
-                Directs core web and software architecture at Essenziat Digital. Focused on sub-second loading performance, precision UI systems, and full-stack product execution.
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-4">
+                Master of end-to-end system design, full-stack architecture, and cloud DevOps. Bridges deep technical execution with creative disciplines—including UI/UX systems, visual direction, and digital media production.
               </p>
+
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {['System Architecture', 'Cloud DevOps', 'Full-Stack Dev', 'UI/UX & Media'].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2 py-0.5 rounded-md bg-zinc-100 border border-black/[0.05] text-[10px] font-mono text-zinc-700 font-medium"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
               <span className="text-zinc-400">Core Focus</span>
-              <span className="text-zinc-900 font-semibold">Systems Architecture & Direction</span>
+              <span className="text-zinc-900 font-semibold">Architecture, DevOps & Design</span>
             </div>
           </div>
 
@@ -126,7 +137,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
-                    Secondary Engineer
+                    Software & Backend Engineer
                   </span>
                   <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
                     Salik Amir
@@ -134,14 +145,25 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
-                Engineers full-stack features, reliable frontend workflows, and robust application logic to support scalable and responsive digital platforms.
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-4">
+                Specializes in robust backend architecture, server-side software development, and database engineering. Collaborates across shared full-stack workflows to deliver reliable, high-performance logic across digital platforms.
               </p>
+
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {['Backend Systems', 'Software Dev', 'API Architecture', 'Database Logic'].map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2 py-0.5 rounded-md bg-zinc-100 border border-black/[0.05] text-[10px] font-mono text-zinc-700 font-medium"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
               <span className="text-zinc-400">Core Focus</span>
-              <span className="text-zinc-900 font-semibold">Software & Web Implementation</span>
+              <span className="text-zinc-900 font-semibold">Backend & Software Engineering</span>
             </div>
           </div>
         </div>
