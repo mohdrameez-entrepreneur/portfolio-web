@@ -83,87 +83,118 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Engineering Team Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-16">
-          {/* Mohd Rameez */}
-          <div className="relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-8 shadow-apple hover:shadow-apple-lg transition-all duration-300 flex flex-col justify-between overflow-hidden">
-            <div>
-              <div className="flex items-center gap-4 mb-5">
-                <div className="relative w-16 h-16 sm:w-18 sm:h-18 shrink-0 rounded-full overflow-hidden border-2 border-black/10 bg-zinc-100 shadow-sm ring-4 ring-black/[0.03]">
-                  <img
-                    src={founderImage}
-                    alt="Mohd Rameez"
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-500"
-                  />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
+        {/* Engineering Team Section - Stacked Hierarchy */}
+        <div className="flex flex-col gap-6 sm:gap-8 mb-16">
+          {/* Mohd Rameez - Primary Flagship Card */}
+          <div className="relative rounded-3xl border border-black/[0.08] bg-white p-7 sm:p-10 shadow-apple-lg overflow-hidden">
+            <div className="pointer-events-none absolute top-0 right-0 w-80 h-80 bg-brand-blue/[0.05] rounded-full blur-[100px]" />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8 text-center md:text-left">
+              <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-full overflow-hidden border-2 border-black/10 bg-zinc-100 shadow-apple ring-4 ring-black/[0.03]">
+                <img
+                  src={founderImage}
+                  alt="Mohd Rameez"
+                  className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-500"
+                />
+              </div>
+
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-2">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full">
                     Founder · Principal Architect & Engineer
                   </span>
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
-                    Mohd Rameez
-                  </h2>
+                  <span className="text-[11px] font-mono font-semibold text-zinc-400">
+                    Lead Discipline
+                  </span>
+                </div>
+
+                <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 mb-3">
+                  Mohd Rameez
+                </h2>
+
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-3">
+                  I lead Essenziat Digital as founder and principal architect. My discipline spans the full product lifecycle: from high-concurrency system design, cloud DevOps infrastructure, and custom software architectures to conversion-driven UI/UX design, visual brand direction, and digital growth media production.
+                </p>
+
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
+                  Every product we engineer is built with sub-second performance standards, obsidian typography, and zero-bloat architecture so founders own their software completely with zero dependencies.
+                </p>
+
+                {/* Skill Badges */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 mb-6">
+                  {[
+                    'System Architecture',
+                    'Cloud DevOps',
+                    'Full-Stack Engineering',
+                    'UI/UX Design Systems',
+                    'Visual Direction',
+                    'Digital Media Production'
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 rounded-lg bg-zinc-50 border border-black/[0.06] text-[11px] font-mono text-zinc-700 font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="pt-4 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-500">
+                  <span className="font-semibold text-zinc-900">Founder & Studio Direction</span>
+                  <span className="text-brand-blue font-medium">End-to-End System Ownership</span>
                 </div>
               </div>
-
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-4">
-                Master of end-to-end system design, full-stack architecture, and cloud DevOps. Bridges deep technical execution with creative disciplines—including UI/UX systems, visual direction, and digital media production.
-              </p>
-
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {['System Architecture', 'Cloud DevOps', 'Full-Stack Dev', 'UI/UX & Media'].map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2 py-0.5 rounded-md bg-zinc-100 border border-black/[0.05] text-[10px] font-mono text-zinc-700 font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
-              <span className="text-zinc-400">Core Focus</span>
-              <span className="text-zinc-900 font-semibold">Architecture, DevOps & Design</span>
             </div>
           </div>
 
-          {/* Salik Amir */}
-          <div className="relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-8 shadow-apple hover:shadow-apple-lg transition-all duration-300 flex flex-col justify-between overflow-hidden">
-            <div>
-              <div className="flex items-center gap-4 mb-5">
-                <div className="relative w-16 h-16 sm:w-18 sm:h-18 shrink-0 rounded-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 text-white flex items-center justify-center font-mono font-bold text-base sm:text-lg border-2 border-black/10 shadow-sm ring-4 ring-black/[0.03] select-none">
-                  SA
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
-                    Software & Backend Engineer
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
-                    Salik Amir
-                  </h2>
-                </div>
+          {/* Salik Amir - Secondary Engineering Card */}
+          <div className="relative rounded-3xl border border-black/[0.08] bg-zinc-50/70 p-6 sm:p-8 shadow-apple hover:bg-white transition-all duration-300 overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-5 sm:gap-7 text-center md:text-left">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 text-white flex items-center justify-center font-mono font-bold text-xl sm:text-2xl border-2 border-black/10 shadow-sm ring-4 ring-black/[0.03] select-none">
+                SA
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-4">
-                Specializes in robust backend architecture, server-side software development, and database engineering. Collaborates across shared full-stack workflows to deliver reliable, high-performance logic across digital platforms.
-              </p>
-
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {['Backend Systems', 'Software Dev', 'API Architecture', 'Database Logic'].map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2 py-0.5 rounded-md bg-zinc-100 border border-black/[0.05] text-[10px] font-mono text-zinc-700 font-medium"
-                  >
-                    {skill}
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-2">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2.5 py-0.5 rounded-full">
+                    Secondary Engineer · Software & Backend
                   </span>
-                ))}
-              </div>
-            </div>
+                  <span className="text-[11px] font-mono font-semibold text-zinc-400">
+                    Core Systems
+                  </span>
+                </div>
 
-            <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
-              <span className="text-zinc-400">Core Focus</span>
-              <span className="text-zinc-900 font-semibold">Backend & Software Engineering</span>
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 mb-2">
+                  Salik Amir
+                </h3>
+
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-4">
+                  Specializes in core backend architecture, server-side software engineering, and database design. Collaborates directly with Mohd Rameez on full-stack workflows—translating complex system requirements into robust, high-performance logic across all client platforms.
+                </p>
+
+                {/* Skill Badges */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 mb-5">
+                  {[
+                    'Backend Architecture',
+                    'Server-Side Logic',
+                    'Database Engineering',
+                    'API Systems',
+                    'Full-Stack Development'
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 rounded-lg bg-white border border-black/[0.06] text-[11px] font-mono text-zinc-700 font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="pt-3.5 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-500">
+                  <span className="font-semibold text-zinc-800">Software & Backend Implementation</span>
+                  <span className="text-zinc-500">Scalable Server Infrastructure</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
