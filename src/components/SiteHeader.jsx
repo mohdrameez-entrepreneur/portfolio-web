@@ -51,12 +51,18 @@ export default function SiteHeader({ brandLogo, onContactClick }) {
           >
             Home
           </NavLink>
-          <a
-            href="/#work"
-            className="px-4 py-1.5 rounded-full text-xs font-medium tracking-wide text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.02] transition-all duration-200"
+          <NavLink
+            to="/work"
+            className={({ isActive }) =>
+              `px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 ${
+                isActive
+                  ? 'text-zinc-900 bg-white shadow-sm font-semibold'
+                  : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.02]'
+              }`
+            }
           >
-            Ventures
-          </a>
+            Our Work
+          </NavLink>
           <NavLink
             to="/services"
             className={({ isActive }) =>
@@ -132,13 +138,13 @@ export default function SiteHeader({ brandLogo, onContactClick }) {
             >
               Home
             </NavLink>
-            <a
-              href="/#work"
+            <NavLink
+              to="/work"
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-semibold text-zinc-800 hover:text-black py-2 border-b border-black/5"
             >
-              Ventures
-            </a>
+              Our Work
+            </NavLink>
             <NavLink
               to="/services"
               className="text-base font-semibold text-zinc-800 hover:text-black py-2 border-b border-black/5"

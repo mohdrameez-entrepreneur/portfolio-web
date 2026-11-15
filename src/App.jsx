@@ -4,6 +4,7 @@ import brandLogo from '../ext-resources/logos/essenziat-digital-logo.jpeg';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
+import WorkPage from './pages/WorkPage';
 import FooterSection from './components/FooterSection';
 import BrandMark from './components/BrandMark';
 import IntroLoader from './components/IntroLoader';
@@ -22,6 +23,7 @@ function AnimatedRoutes() {
       >
         <Routes location={location}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/work" element={<WorkPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

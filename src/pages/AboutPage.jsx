@@ -69,7 +69,7 @@ export default function AboutPage() {
 
       <SiteHeader brandLogo={brandLogo} onContactClick={() => setIsContactOpen(true)} />
 
-      <div className="relative z-10 mx-auto max-w-3xl">
+      <div className="relative z-10 mx-auto max-w-4xl">
         {/* Header Storyline */}
         <div className="mb-12 sm:mb-16 text-center">
           <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold mb-5 shadow-2xs">
@@ -78,35 +78,70 @@ export default function AboutPage() {
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 mb-4 text-balance">
             Crafted with intention.
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 max-w-lg mx-auto leading-relaxed text-balance">
-            A performance-first digital studio founded by Mohd Rameez, dedicated to building sub-second software with precision engineering and refined modern minimalism.
+          <p className="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto leading-relaxed text-balance">
+            A performance-first digital studio dedicated to building sub-second software with precision engineering, clean systems, and modern minimalism.
           </p>
         </div>
 
-        {/* Founder Spotlight Card */}
-        <div className="relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-10 mb-14 shadow-apple-lg overflow-hidden">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-            <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-full overflow-hidden border-2 border-black/10 bg-zinc-100 shadow-apple ring-4 ring-black/[0.03]">
-              <img
-                src={founderImage}
-                alt="Mohd Rameez"
-                className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-500"
-              />
+        {/* Engineering Team Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-16">
+          {/* Mohd Rameez */}
+          <div className="relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-8 shadow-apple hover:shadow-apple-lg transition-all duration-300 flex flex-col justify-between overflow-hidden">
+            <div>
+              <div className="flex items-center gap-4 mb-5">
+                <div className="relative w-16 h-16 sm:w-18 sm:h-18 shrink-0 rounded-full overflow-hidden border-2 border-black/10 bg-zinc-100 shadow-sm ring-4 ring-black/[0.03]">
+                  <img
+                    src={founderImage}
+                    alt="Mohd Rameez"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-all duration-500"
+                  />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
+                    Founder · Lead Engineer
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
+                    Mohd Rameez
+                  </h2>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
+                Directs core web and software architecture at Essenziat Digital. Focused on sub-second loading performance, precision UI systems, and full-stack product execution.
+              </p>
             </div>
 
-            <div className="flex-1 text-center sm:text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-blue block mb-1">
-                Owner & Lead Engineer
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 mb-2">
-                Mohd Rameez
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
-                I lead web and software engineering at Essenziat Digital. We architect clean, high-speed digital products that open instantly, eliminate bloat, and align with performance milestones.
-              </p>
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 text-xs font-medium text-zinc-700 pt-3.5 border-t border-black/[0.06]">
-                <span className="font-semibold text-zinc-900">Founder of Essenziat Digital</span>
+            <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
+              <span className="text-zinc-400">Core Focus</span>
+              <span className="text-zinc-900 font-semibold">Systems Architecture & Direction</span>
+            </div>
+          </div>
+
+          {/* Salik Amir */}
+          <div className="relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-8 shadow-apple hover:shadow-apple-lg transition-all duration-300 flex flex-col justify-between overflow-hidden">
+            <div>
+              <div className="flex items-center gap-4 mb-5">
+                <div className="relative w-16 h-16 sm:w-18 sm:h-18 shrink-0 rounded-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 text-white flex items-center justify-center font-mono font-bold text-base sm:text-lg border-2 border-black/10 shadow-sm ring-4 ring-black/[0.03] select-none">
+                  SA
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
+                    Secondary Engineer
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
+                    Salik Amir
+                  </h2>
+                </div>
               </div>
+
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5">
+                Engineers full-stack features, reliable frontend workflows, and robust application logic to support scalable and responsive digital platforms.
+              </p>
+            </div>
+
+            <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500 font-medium">
+              <span className="text-zinc-400">Core Focus</span>
+              <span className="text-zinc-900 font-semibold">Software & Web Implementation</span>
             </div>
           </div>
         </div>

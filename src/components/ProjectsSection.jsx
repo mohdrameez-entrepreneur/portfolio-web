@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function ProjectsSection({
@@ -7,7 +8,7 @@ export default function ProjectsSection({
 }) {
   const [selectedTag, setSelectedTag] = useState('All');
 
-  const tags = ['All', 'Web Architecture', 'UI/UX Systems', 'Venture Engineering', 'Media Growth'];
+  const tags = ['All', 'Web Architecture', 'UI/UX Systems', 'Venture Engineering', 'Complementary Work'];
 
   const filteredProjects = selectedTag === 'All'
     ? projects
@@ -24,18 +25,18 @@ export default function ProjectsSection({
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20 border-b border-black/[0.08] pb-10 sm:pb-12">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold block mb-3">
-              Act II · Real Projects We Built
+              Act II · Selected Portfolio
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900">
-              Real projects that deliver.
+              Our work that delivers.
             </h2>
           </div>
           <p className="text-zinc-600 max-w-md text-sm sm:text-base leading-relaxed">
-            A showcase of super fast websites, digital products, and growth systems engineered by Essenziat Digital.
+            A showcase of high-performance web applications, digital products, and growth systems engineered by Essenziat Digital.
           </p>
         </div>
 
-        {/* Ventures Grid */}
+        {/* Selected Work Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -59,7 +60,7 @@ export default function ProjectsSection({
               {/* Visual Frame */}
               <div
                 onClick={() => setIsFullscreenPreviewOpen && setIsFullscreenPreviewOpen(project)}
-                className="relative w-full h-56 sm:h-72 mb-6 rounded-2xl overflow-hidden border border-black/[0.08] bg-zinc-100 cursor-pointer shadow-inner"
+                className="relative w-full aspect-[2/1] mb-6 rounded-2xl overflow-hidden border border-black/[0.08] bg-zinc-900 cursor-pointer shadow-sm group/img"
               >
                 {project.image ? (
                   <img
@@ -113,6 +114,17 @@ export default function ProjectsSection({
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* See More Work CTA */}
+        <div className="mt-12 sm:mt-16 text-center">
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-black/10 bg-zinc-900 text-white hover:bg-black font-semibold text-sm transition-all duration-200 shadow-apple hover:shadow-apple-lg hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <span>See More Work</span>
+            <span className="text-base">→</span>
+          </Link>
         </div>
       </div>
     </section>

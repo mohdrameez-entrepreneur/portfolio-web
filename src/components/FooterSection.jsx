@@ -17,7 +17,7 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
           {/* Navigation Links */}
           <div className="flex flex-wrap gap-7 text-xs font-semibold text-zinc-600">
             <Link to="/" className="hover:text-zinc-900 transition-colors">Home</Link>
-            <a href="/#work" className="hover:text-zinc-900 transition-colors">Ventures</a>
+            <Link to="/work" className="hover:text-zinc-900 transition-colors">Our Work</Link>
             <Link to="/services" className="hover:text-zinc-900 transition-colors">Capabilities</Link>
             <Link to="/about" className="hover:text-zinc-900 transition-colors">Story</Link>
           </div>

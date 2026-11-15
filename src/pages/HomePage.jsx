@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
-import ruhverseMain from '../../ext-resources/images/Ruhverse-main.png';
-import cruvoMain from '../../ext-resources/images/cruvo-main.png';
-import tttMain from '../../ext-resources/images/TTT.png';
-import vfMain from '../../ext-resources/images/VF.png';
+import ruhverseShowcase from '../../ext-resources/images/ruhverse-showcase.jpg';
+import cruvoShowcase from '../../ext-resources/images/cruvo-showcase.jpg';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import ProjectsSection from '../components/ProjectsSection';
@@ -17,44 +15,24 @@ import { getRatings, submitRating } from "../API/rating";
 
 const projects = [
   {
-    title: 'RuhVerse',
-    tag: 'Live Platform · Fast Quran Web',
-    discipline: 'Web & Software Engineering',
-    image: ruhverseMain,
-    alt: 'RuhVerse Web Interface',
-    siteUrl: 'https://ruhverse.online',
-    description: 'An ultra-fast online Quran study website built for readers around the world. Designed to open instantly on every phone and laptop with zero lag.',
-    metric: 'Global Readers · Instant Speed'
-  },
-  {
     title: 'Cruvo',
     tag: 'Live Platform · Rider Telemetry',
     discipline: 'Full-Stack Web & Mobile App',
-    image: cruvoMain,
+    image: cruvoShowcase,
     alt: 'Cruvo - Real-Time Group Motorcycle Navigation & GPS Radar',
     siteUrl: 'https://cruvoride.vercel.app',
     description: 'A real-time motorcycle touring and group GPS radar platform engineered independently by Mohd Rameez. Features live squad radar, pitstop flagging, and turn-by-turn route sync.',
     metric: 'Real-Time Telemetry · Live Platform'
   },
   {
-    title: 'The Tabsarah Table',
-    tag: 'Media Growth · Video Strategy',
-    discipline: 'Video & Search Growth',
-    image: tttMain,
-    alt: 'The Tabsarah Table YouTube analytics and content thumbnails',
-    siteUrl: '',
-    description: 'Managed YouTube search growth, eye-catching thumbnail designs, and video pacing for Adeem Raza, reaching 1,000+ views per feature video.',
-    metric: '1K+ Views / Video'
-  },
-  {
-    title: 'VF Educational Channel',
-    tag: 'Media Production · Channel Scaling',
-    discipline: 'Video & Growth Ops',
-    image: vfMain,
-    alt: 'VF educational channel performance snapshot',
-    siteUrl: 'https://www.youtube.com/@Vital-Facts',
-    description: 'Complete video creation pipeline, scripting, and growth strategy that helped scale the educational channel to over 3,200 active subscribers.',
-    metric: '3.2K+ Active Subscribers'
+    title: 'RuhVerse',
+    tag: 'Live Platform · Fast Quran Web',
+    discipline: 'Web & Software Engineering',
+    image: ruhverseShowcase,
+    alt: 'RuhVerse Web Interface',
+    siteUrl: 'https://ruhverse.online',
+    description: 'An ultra-fast online Quran study website built for readers around the world. Designed to open instantly on every phone and laptop with zero lag, prayer times, and Qibla navigation.',
+    metric: 'Global Readers · Instant Speed'
   }
 ];
 

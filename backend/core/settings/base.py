@@ -101,8 +101,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = _split_csv(os.getenv('CORS_ALLOWED_ORIGINS', 'http://127.0.0.1:5173,http://localhost:5173'))
-CSRF_TRUSTED_ORIGINS = _split_csv(os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:5173,http://localhost:5173'))
+CORS_ALLOWED_ORIGINS = _split_csv(os.getenv('CORS_ALLOWED_ORIGINS', 'http://127.0.0.1:5173,http://localhost:5173,https://essenziatdigital.online,https://www.essenziatdigital.online,https://essenziat-digital.vercel.app'))
+CSRF_TRUSTED_ORIGINS = _split_csv(os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:5173,http://localhost:5173,https://essenziatdigital.online,https://www.essenziatdigital.online,https://essenziat-digital.vercel.app'))
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://essenziat-digital.vercel.app/sitemap.xml
+Sitemap: https://essenziatdigital.online/sitemap.xml
+Host: https://essenziatdigital.online
