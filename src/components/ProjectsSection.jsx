@@ -15,29 +15,29 @@ export default function ProjectsSection({
     : projects.filter((p) => p.category === selectedTag || p.tag.toLowerCase().includes(selectedTag.toLowerCase()));
 
   return (
-    <section id="work" className="relative py-24 sm:py-32 px-5 sm:px-8 bg-white border-t border-black/[0.06]">
+    <section id="work" className="relative py-16 sm:py-32 px-4 sm:px-8 bg-white border-t border-black/[0.06]">
       {/* Background ambient lighting */}
       <div className="pointer-events-none absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-brand-blue/[0.04] rounded-full blur-[140px]" />
       <div className="pointer-events-none absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-brand-gold/[0.03] rounded-full blur-[120px]" />
 
       <div className="mx-auto max-w-6xl relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20 border-b border-black/[0.08] pb-10 sm:pb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-12 sm:mb-20 border-b border-black/[0.08] pb-8 sm:pb-12">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold block mb-3">
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.16em] sm:tracking-[0.25em] text-brand-gold block mb-2 sm:mb-3">
               Act II · Selected Portfolio
             </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900">
               Our work that delivers.
             </h2>
           </div>
-          <p className="text-zinc-600 max-w-md text-sm sm:text-base leading-relaxed">
+          <p className="text-zinc-600 max-w-md text-xs sm:text-base leading-relaxed">
             A showcase of high-performance web applications, digital products, and growth systems engineered by Essenziat Digital.
           </p>
         </div>
 
         {/* Selected Work Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -45,14 +45,14 @@ export default function ProjectsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="group relative rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-black/20 hover:shadow-apple-lg overflow-hidden shadow-apple"
+              className="group relative rounded-3xl border border-black/[0.08] bg-white p-4.5 sm:p-7 md:p-8 flex flex-col justify-between transition-all duration-300 hover:border-black/20 hover:shadow-apple-lg overflow-hidden shadow-apple"
             >
               {/* Top meta */}
-              <div className="flex items-center justify-between gap-3 mb-5">
-                <span className="text-[11px] font-mono tracking-wider text-zinc-400 uppercase">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
+                <span className="text-[10px] sm:text-[11px] font-mono tracking-wider text-zinc-400 uppercase">
                   {`0${index + 1}`} · {project.discipline || 'Digital Product'}
                 </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 border border-black/[0.06] text-zinc-700">
+                <span className="inline-flex items-center px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium bg-zinc-100 border border-black/[0.06] text-zinc-700">
                   {project.tag}
                 </span>
               </div>
@@ -60,7 +60,7 @@ export default function ProjectsSection({
               {/* Visual Frame */}
               <div
                 onClick={() => setIsFullscreenPreviewOpen && setIsFullscreenPreviewOpen(project)}
-                className="relative w-full aspect-[2/1] mb-6 rounded-2xl overflow-hidden border border-black/[0.08] bg-zinc-900 cursor-pointer shadow-sm group/img"
+                className="relative w-full aspect-[2/1] mb-5 sm:mb-6 rounded-2xl overflow-hidden border border-black/[0.08] bg-zinc-900 cursor-pointer shadow-sm group/img"
               >
                 {project.image ? (
                   <img
@@ -83,8 +83,8 @@ export default function ProjectsSection({
 
               {/* Narrative Content */}
               <div>
-                <div className="flex items-baseline justify-between gap-4 mb-2">
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 group-hover:text-brand-blue transition-colors">
+                <div className="flex items-baseline justify-between gap-3 mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 group-hover:text-brand-blue transition-colors">
                     {project.title}
                   </h3>
                   {project.siteUrl && (
@@ -100,13 +100,13 @@ export default function ProjectsSection({
                   )}
                 </div>
 
-                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-6">
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5 sm:mb-6">
                   {project.description}
                 </p>
 
                 {/* Outcome metrics bar */}
                 {project.metric && (
-                  <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500">
+                  <div className="pt-3 sm:pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500">
                     <span>Key Result:</span>
                     <span className="font-semibold text-zinc-800 tracking-tight">{project.metric}</span>
                   </div>
@@ -117,10 +117,10 @@ export default function ProjectsSection({
         </div>
 
         {/* See More Work CTA */}
-        <div className="mt-12 sm:mt-16 text-center">
+        <div className="mt-10 sm:mt-16 text-center">
           <Link
             to="/work"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-black/10 bg-zinc-900 text-white hover:bg-black font-semibold text-sm transition-all duration-200 shadow-apple hover:shadow-apple-lg hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3 sm:py-3.5 rounded-full border border-black/10 bg-zinc-900 text-white hover:bg-black font-semibold text-xs sm:text-sm transition-all duration-200 shadow-apple hover:shadow-apple-lg hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>See More Work</span>
             <span className="text-base">→</span>

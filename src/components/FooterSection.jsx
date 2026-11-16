@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function FooterSection({ BrandMarkComponent, brandLogo }) {
   return (
-    <footer className="w-full border-t border-black/[0.08] bg-white py-16 text-xs text-zinc-500">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-black/[0.06]">
+    <footer className="w-full border-t border-black/[0.08] bg-white py-12 sm:py-16 text-xs text-zinc-500">
+      <div className="mx-auto max-w-6xl px-4 sm:px-8">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 pb-10 sm:pb-12 border-b border-black/[0.06]">
           {/* Brand & Mission */}
           <div className="flex flex-col gap-3 max-w-xs">
             <BrandMarkComponent brandLogo={brandLogo} />
@@ -15,7 +15,7 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex flex-wrap gap-7 text-xs font-semibold text-zinc-600">
+          <div className="flex flex-wrap gap-4 sm:gap-7 text-xs font-semibold text-zinc-600">
             <Link to="/" className="hover:text-zinc-900 transition-colors">Home</Link>
             <Link to="/work" className="hover:text-zinc-900 transition-colors">Our Work</Link>
             <Link to="/services" className="hover:text-zinc-900 transition-colors">Capabilities</Link>
@@ -23,7 +23,7 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
           </div>
 
           {/* Distinct Studio & Founder Social Channels */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             {/* Firm / Studio Channel */}
             <div className="flex flex-col gap-1.5">
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-400">
@@ -108,9 +108,9 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-[11px]">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left text-zinc-500 text-[10px] sm:text-[11px]">
           <p>&copy; {new Date().getFullYear()} ESSENZIAT DIGITAL · ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
               <span className="text-zinc-600">Global Remote · New Delhi</span>

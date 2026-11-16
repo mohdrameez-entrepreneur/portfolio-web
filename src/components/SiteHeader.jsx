@@ -28,8 +28,8 @@ export default function SiteHeader({ brandLogo, onContactClick }) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-3 md:px-8 transition-all duration-300">
-      <div className={`w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-5 py-2.5 md:px-6 md:py-3 ${
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 md:px-8 py-2.5 sm:py-3 transition-all duration-300">
+      <div className={`w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-3.5 sm:px-5 py-2 sm:py-2.5 md:px-6 md:py-3 ${
         scrolled
           ? 'bg-white/85 backdrop-blur-2xl border border-black/[0.08] shadow-[0_10px_35px_-5px_rgba(0,0,0,0.06)]'
           : 'bg-white/60 backdrop-blur-xl border border-black/[0.04]'
@@ -90,12 +90,12 @@ export default function SiteHeader({ brandLogo, onContactClick }) {
         </nav>
 
         {/* Right CTA */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={onContactClick}
-            className="relative group overflow-hidden rounded-full bg-zinc-900 text-white px-4 py-2 text-xs md:text-sm font-semibold tracking-wide transition-all duration-300 hover:bg-black hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] flex items-center gap-2 cursor-pointer"
+            className="relative group overflow-hidden rounded-full bg-zinc-900 text-white px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs md:text-sm font-semibold tracking-wide transition-all duration-300 hover:bg-black hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] flex items-center gap-1.5 sm:gap-2 cursor-pointer"
           >
             <span className="relative z-10 flex items-center gap-1.5">
               <span>Let's Talk</span>

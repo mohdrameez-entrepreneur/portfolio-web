@@ -112,7 +112,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-white text-zinc-900 px-5 sm:px-8 pt-32 pb-24 selection:bg-brand-blue selection:text-white">
+    <main className="relative min-h-screen bg-white text-zinc-900 px-4 sm:px-8 pt-24 sm:pt-32 pb-20 sm:pb-24 selection:bg-brand-blue selection:text-white">
       {/* Background ambient lighting */}
       <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-brand-blue/[0.04] rounded-full blur-[160px]" />
       <div className="pointer-events-none absolute top-1/3 right-1/4 w-[400px] h-[300px] bg-brand-gold/[0.03] rounded-full blur-[140px]" />
@@ -121,64 +121,64 @@ export default function ServicesPage() {
 
       <div className="relative z-10 mx-auto max-w-5xl">
         {/* Header Storyline */}
-        <div className="mb-16 sm:mb-20 text-center">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue mb-6 shadow-2xs">
+        <div className="mb-12 sm:mb-20 text-center">
+          <span className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full border border-black/[0.08] bg-zinc-50 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-brand-blue mb-4 sm:mb-6 shadow-2xs">
             What We Do
           </span>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-zinc-900 mb-6 text-balance">
+          <h1 className="text-3xl sm:text-6xl md:text-7xl font-bold tracking-tight text-zinc-900 mb-4 sm:mb-6 text-balance">
             Development first. <br />
             <span className="bg-gradient-to-r from-zinc-900 via-zinc-700 to-brand-blue bg-clip-text text-transparent">
               Clean, fast, and simple.
             </span>
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed text-balance">
+          <p className="text-sm sm:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed text-balance">
             Web & software development is our main craft. UI/UX design, visual direction, and mobile apps are supporting superpowers to build complete, successful products.
           </p>
         </div>
 
         {/* Flagship: The Main Quest Card */}
-        <div className="rounded-3xl border-2 border-brand-blue/30 bg-white p-6 sm:p-12 shadow-apple-lg mb-12 relative overflow-hidden">
+        <div className="rounded-3xl border-2 border-brand-blue/30 bg-white p-5 sm:p-8 md:p-12 shadow-apple-lg mb-10 sm:mb-12 relative overflow-hidden">
           <div className="pointer-events-none absolute top-0 right-0 w-80 h-80 bg-brand-blue/[0.06] rounded-full blur-[100px]" />
 
           <div className="relative z-10">
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-black/[0.06] mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 sm:pb-6 border-b border-black/[0.06] mb-6 sm:mb-8">
               <div>
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-2.5 sm:gap-3 mb-2">
                   <span className="text-xs font-mono font-bold text-brand-blue">{PRIMARY_ENGINEERING.num}</span>
                   <span className="text-zinc-300">/</span>
-                  <span className="text-xs font-bold uppercase tracking-widest text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full">
                     {PRIMARY_ENGINEERING.badge}
                   </span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900">{PRIMARY_ENGINEERING.title}</h2>
+                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-900">{PRIMARY_ENGINEERING.title}</h2>
               </div>
               <button
                 onClick={() => {
                   setContactForm((prev) => ({ ...prev, service: PRIMARY_ENGINEERING.title }));
                   setIsContactOpen(true);
                 }}
-                className="px-6 py-2.5 rounded-full bg-zinc-900 text-xs font-semibold text-white hover:bg-black transition-all shrink-0 self-start shadow-apple cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-zinc-900 text-xs font-semibold text-white hover:bg-black transition-all shrink-0 self-start shadow-apple cursor-pointer text-center"
               >
                 Ask About Web Development →
               </button>
             </div>
 
-            <p className="text-lg text-zinc-800 font-semibold leading-relaxed mb-3">{PRIMARY_ENGINEERING.tagline}</p>
-            <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-8 max-w-3xl">{PRIMARY_ENGINEERING.description}</p>
+            <p className="text-base sm:text-lg text-zinc-800 font-semibold leading-relaxed mb-2.5 sm:mb-3">{PRIMARY_ENGINEERING.tagline}</p>
+            <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-6 sm:mb-8 max-w-3xl">{PRIMARY_ENGINEERING.description}</p>
 
             {/* Tech Stack Pills */}
-            <div className="mb-6">
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-3">Key Highlights:</span>
-              <div className="flex flex-wrap gap-2">
+            <div className="mb-5 sm:mb-6">
+              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-2 sm:mb-3">Key Highlights:</span>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {PRIMARY_ENGINEERING.technologies.map((t) => (
-                  <span key={t} className="px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 border border-black/[0.06] text-zinc-800">
+                  <span key={t} className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-zinc-100 border border-black/[0.06] text-zinc-800">
                     {t}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500">
+            <div className="pt-3.5 sm:pt-4 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs text-zinc-500">
               <span>Live Example:</span>
               <span className="font-semibold text-brand-blue">{PRIMARY_ENGINEERING.ventureBenchmark}</span>
             </div>
@@ -186,7 +186,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Section divider for side quests */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-6 sm:mb-8">
           <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold">
             Supporting Side Quests
           </span>
@@ -194,46 +194,46 @@ export default function ServicesPage() {
         </div>
 
         {/* The 3 Supporting Capabilities Breakdown */}
-        <div className="space-y-6 mb-24">
+        <div className="space-y-4 sm:space-y-6 mb-16 sm:mb-24">
           {SUPPORTING_SIDE_QUESTS.map((cap) => (
             <div
               key={cap.title}
-              className="rounded-3xl border border-black/[0.08] bg-zinc-50/70 p-6 sm:p-10 hover:border-black/20 hover:bg-white hover:shadow-apple transition-all duration-300"
+              className="rounded-3xl border border-black/[0.08] bg-zinc-50/70 p-5 sm:p-8 md:p-10 hover:border-black/20 hover:bg-white hover:shadow-apple transition-all duration-300"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-5 border-b border-black/[0.06] mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 pb-4 sm:pb-5 border-b border-black/[0.06] mb-4 sm:mb-6">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs font-mono font-medium text-brand-gold">{cap.num}</span>
                     <span className="text-zinc-300">/</span>
                     <span className="text-[10px] uppercase tracking-widest font-semibold text-zinc-500">{cap.category}</span>
                   </div>
-                  <h3 className="text-2xl font-bold tracking-tight text-zinc-900">{cap.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">{cap.title}</h3>
                 </div>
                 <button
                   onClick={() => {
                     setContactForm((prev) => ({ ...prev, service: cap.title }));
                     setIsContactOpen(true);
                   }}
-                  className="px-5 py-2 rounded-full border border-black/10 bg-white text-xs font-semibold text-zinc-800 hover:bg-zinc-100 transition-all shrink-0 self-start shadow-2xs cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2 rounded-full border border-black/10 bg-white text-xs font-semibold text-zinc-800 hover:bg-zinc-100 transition-all shrink-0 self-start shadow-2xs cursor-pointer text-center"
                 >
                   Ask About {cap.title} →
                 </button>
               </div>
 
-              <p className="text-base text-zinc-800 font-medium leading-relaxed mb-2">{cap.tagline}</p>
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-6 max-w-3xl">{cap.description}</p>
+              <p className="text-sm sm:text-base text-zinc-800 font-medium leading-relaxed mb-2">{cap.tagline}</p>
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal mb-5 sm:mb-6 max-w-3xl">{cap.description}</p>
 
-              <div className="mb-5">
-                <div className="flex flex-wrap gap-2">
+              <div className="mb-4 sm:mb-5">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {cap.technologies.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full text-xs font-medium bg-white border border-black/[0.06] text-zinc-700 shadow-2xs">
+                    <span key={t} className="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-white border border-black/[0.06] text-zinc-700 shadow-2xs">
                       {t}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-3.5 border-t border-black/[0.06] flex items-center justify-between text-xs text-zinc-500">
+              <div className="pt-3 sm:pt-3.5 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs text-zinc-500">
                 <span>Live Example:</span>
                 <span className="font-semibold text-zinc-800">{cap.ventureBenchmark}</span>
               </div>
@@ -242,20 +242,20 @@ export default function ServicesPage() {
         </div>
 
         {/* Engagement Models */}
-        <div className="mb-24">
-          <div className="text-center mb-10">
-            <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest block mb-2">How We Work</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900">How we work together.</h2>
+        <div className="mb-16 sm:mb-24">
+          <div className="text-center mb-8 sm:mb-10">
+            <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest block mb-1 sm:mb-2">How We Work</span>
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-900">How we work together.</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {ENGAGEMENT_MODELS.map((model) => (
-              <div key={model.title} className="p-6 sm:p-8 rounded-3xl border border-black/[0.08] bg-white shadow-apple flex flex-col justify-between">
+              <div key={model.title} className="p-5 sm:p-8 rounded-3xl border border-black/[0.08] bg-white shadow-apple flex flex-col justify-between">
                 <div>
-                  <span className="inline-block px-3 py-1 rounded-full text-[11px] font-mono text-zinc-700 bg-zinc-100 border border-black/[0.06] mb-4">
+                  <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-mono text-zinc-700 bg-zinc-100 border border-black/[0.06] mb-3 sm:mb-4">
                     {model.timeline}
                   </span>
-                  <h3 className="text-lg font-bold text-zinc-900 mb-2">{model.title}</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-zinc-900 mb-2">{model.title}</h3>
                   <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal">{model.desc}</p>
                 </div>
                 <button
