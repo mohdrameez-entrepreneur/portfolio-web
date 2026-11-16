@@ -54,32 +54,75 @@
 <meta name="twitter:image" content="https://essenziatdigital.online/essenziat-digital-logo.jpeg" />
 <meta name="twitter:image:alt" content="Essenziat Digital Studio Logo" />
 
-<!-- Structured Data (JSON-LD) -->
+<!-- Structured Data (JSON-LD) - Google Knowledge Graph & Organization Schema -->
 <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Essenziat Digital",
-        "alternateName": "Essenziat",
-        "url": "https://essenziatdigital.online/",
-        "logo": "https://essenziatdigital.online/essenziat-digital-logo.jpeg",
-        "image": "https://essenziatdigital.online/essenziat-digital-logo.jpeg",
-        "description": "Performance-first digital studio for full-stack web development, UI/UX systems, and conversion-engineered software architecture.",
-        "email": "essenziatdigital@gmail.com",
-        "priceRange": "$$",
-        "areaServed": "Global",
-        "serviceType": [
-          "Web Development",
-          "Full-Stack Software Engineering",
-          "UI/UX Design Systems",
-          "Performance Optimization",
-          "Digital Strategy"
-        ],
-        "founder": {
-          "@type": "Person",
-          "name": "Mohd Rameez"
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://essenziatdigital.online/#website",
+          "url": "https://essenziatdigital.online/",
+          "name": "Essenziat Digital",
+          "description": "Performance-first digital studio specializing in bespoke web development, full-stack software architecture, and UI/UX systems.",
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://essenziatdigital.online/#organization",
+          "name": "Essenziat Digital",
+          "alternateName": ["Essenziat", "Essenziat Digital Studio"],
+          "url": "https://essenziatdigital.online/",
+          "logo": "https://essenziatdigital.online/essenziat-digital-logo.jpeg",
+          "image": "https://essenziatdigital.online/essenziat-digital-logo.jpeg",
+          "description": "Performance-first digital studio for full-stack web development, UI/UX systems, and conversion-engineered software architecture.",
+          "email": "essenziatdigital@gmail.com",
+          "priceRange": "$$",
+          "areaServed": "Global",
+          "knowsAbout": [
+            "Full-Stack Web Development",
+            "System Architecture",
+            "Cloud DevOps",
+            "UI/UX Design Systems",
+            "Performance Optimization",
+            "Digital Growth Media"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Core Digital Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Full-Stack Web & Software Engineering"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "UI/UX Design Systems & Visual Direction"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "High-Performance Cloud & DevOps Architecture"
+                }
+              }
+            ]
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Mohd Rameez",
+            "jobTitle": "Founder & Principal Architect",
+            "email": "essenziatdigital@gmail.com"
+          }
         }
-      }
+      ]
+    }
     </script>
 </head>
 
