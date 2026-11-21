@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
 import ruhverseShowcase from '../../ext-resources/images/ruhverse-showcase.jpg';
 import cruvoShowcase from '../../ext-resources/images/cruvo-showcase.jpg';
+import udyvoShowcase from '../../ext-resources/images/udyvo-showcase.jpg';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import ProjectsSection from '../components/ProjectsSection';
@@ -14,6 +15,16 @@ import SiteHeader from '../components/SiteHeader';
 import { getRatings, submitRating } from "../API/rating";
 
 const projects = [
+  {
+    title: 'Udyvo',
+    tag: 'SaaS Platform · B2B Subscription CRM',
+    discipline: 'SaaS Architecture & Subscription CRM',
+    image: udyvoShowcase,
+    alt: 'Udyvo - Simple & Powerful Subscription CRM for Modern Businesses',
+    siteUrl: '',
+    description: 'A modern subscription-based CRM system engineered to help businesses manage customer relationships, track sales pipelines, automate follow-ups, and visualize revenue growth.',
+    metric: 'B2B SaaS · Subscription Engine'
+  },
   {
     title: 'Cruvo',
     tag: 'Live Platform · Rider Telemetry',

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
 import founderImage from '../../ext-resources/images/founder.jpg';
 import SiteHeader from '../components/SiteHeader';
@@ -248,7 +249,7 @@ export default function AboutPage() {
         </div>
 
         {/* Flagship Ventures Reference Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mb-12 sm:mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 mb-12 sm:mb-14">
           <div className="p-4 sm:p-6 rounded-3xl border border-black/[0.08] bg-white shadow-sm flex items-center justify-between gap-3 sm:gap-4">
             <div>
               <span className="text-[11px] sm:text-xs font-mono font-semibold text-brand-blue block">Live Platform</span>
@@ -279,6 +280,20 @@ export default function AboutPage() {
             >
               Visit →
             </a>
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-3xl border border-black/[0.08] bg-white shadow-sm flex items-center justify-between gap-3 sm:gap-4">
+            <div>
+              <span className="text-[11px] sm:text-xs font-mono font-semibold text-emerald-600 block">SaaS Platform</span>
+              <h4 className="text-sm sm:text-base font-bold text-zinc-900">Udyvo</h4>
+              <p className="text-[11px] sm:text-xs text-zinc-500">Subscription Business CRM</p>
+            </div>
+            <Link
+              to="/work"
+              className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-zinc-900 text-white text-xs font-semibold hover:bg-black transition-colors shrink-0 shadow-2xs"
+            >
+              View →
+            </Link>
           </div>
         </div>
 

@@ -3,12 +3,34 @@ import { motion } from 'framer-motion';
 import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
 import cruvoShowcase from '../../ext-resources/images/cruvo-showcase.jpg';
 import ruhverseShowcase from '../../ext-resources/images/ruhverse-showcase.jpg';
+import udyvoShowcase from '../../ext-resources/images/udyvo-showcase.jpg';
 import tttMain from '../../ext-resources/images/TTT.png';
 import vfMain from '../../ext-resources/images/VF.png';
 import SiteHeader from '../components/SiteHeader';
 import { ContactModal, FullscreenPreviewModal, RequestSubmittedModal } from '../components/Modals';
 
 const WORK_ITEMS = [
+  {
+    id: 'udyvo',
+    title: 'Udyvo',
+    tagline: 'A Simple & Powerful CRM to Manage Customers, Sales & Growth.',
+    category: 'Software & Web',
+    discipline: 'Subscription-Based B2B CRM Platform',
+    badge: 'FLAGSHIP PLATFORM',
+    image: udyvoShowcase,
+    alt: 'Udyvo - CRM System for Modern Businesses',
+    siteUrl: '',
+    status: 'Operational SaaS',
+    metric: 'B2B SaaS · Multi-Tenant Architecture',
+    summary: 'A subscription-based CRM platform engineered for modern businesses. Streamlines customer relationship management, sales pipelines, follow-up automations, and growth analytics in one unified, high-performance web dashboard.',
+    highlights: [
+      'Multi-tenant subscription architecture with customer and sales analytics',
+      'Automated daily follow-up tracking and reminder engine',
+      'Unified pipeline management from initial enquiry to closed deal',
+      'Clean, minimalist dashboard engineered for instant data retrieval'
+    ],
+    techStack: ['React', 'Next.js', 'Tailwind CSS', 'SaaS Architecture', 'Cloud CRM', 'Analytics']
+  },
   {
     id: 'cruvo',
     title: 'Cruvo',
