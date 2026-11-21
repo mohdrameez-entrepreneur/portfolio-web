@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import brandLogo from '../ext-resources/logos/essenziat-digital-logo.jpeg';
@@ -11,6 +12,22 @@ import IntroLoader from './components/IntroLoader';
 
 function AnimatedRoutes() {
   const location = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      '/': 'Essenziat Digital — Official Website | Web & Software Engineering Studio',
+      '/work': 'Our Work & Case Studies | Essenziat Digital Studio',
+      '/services': 'Web & Software Engineering Capabilities | Essenziat Digital',
+      '/about': 'Story, Ethos & Founders — Mohd Rameez | Essenziat Digital'
+    };
+    document.title = titles[location.pathname] || 'Essenziat Digital — Web & Software Engineering Studio';
+
+    // Update canonical link element dynamically
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', `https://essenziatdigital.online${location.pathname === '/' ? '/' : location.pathname}`);
+    }
+  }, [location.pathname]);
 
   return (
     <AnimatePresence mode="wait">

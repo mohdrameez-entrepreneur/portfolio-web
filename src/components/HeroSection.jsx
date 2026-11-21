@@ -37,11 +37,11 @@ export default function HeroSection({
         >
           <span className="hidden xs:inline-block h-px w-5 sm:w-7 bg-black/15 shrink-0" />
           <span className="text-[10px] sm:text-xs font-semibold tracking-[0.12em] sm:tracking-[0.22em] uppercase text-zinc-500 text-center">
-            Performance-First Engineering
+            Essenziat Digital · Performance-First Engineering · 2026
           </span>
           <span className="text-zinc-300 font-light">·</span>
           <span className="text-[10px] sm:text-xs font-mono font-medium text-zinc-400 tracking-wider shrink-0">
-            2026
+            Studio
           </span>
           <span className="hidden xs:inline-block h-px w-5 sm:w-7 bg-black/15 shrink-0" />
         </motion.div>
@@ -49,7 +49,7 @@ export default function HeroSection({
         {/* Punchy 3-Pillar Headline with Cinematic Animation (Text Only) */}
         <motion.div
           variants={fadeUp}
-          className="mb-8 sm:mb-14 w-full"
+          className="mb-8 sm:mb-12 w-full"
         >
           <motion.h1
             initial="hidden"
@@ -66,6 +66,7 @@ export default function HeroSection({
             }}
             className="text-[2.2rem] xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-zinc-900 leading-[1.12] sm:leading-[1.08] text-balance flex flex-col items-center justify-center gap-1 sm:gap-2.5 select-none"
           >
+            <span className="sr-only">Essenziat Digital — </span>
             <motion.span
               variants={{
                 hidden: { opacity: 0, y: 28, filter: 'blur(12px)' },
@@ -112,6 +113,11 @@ export default function HeroSection({
               We deploy it.
             </motion.span>
           </motion.h1>
+
+          {/* Supporting Studio Mission for Search Visibility & Clarified Context */}
+          <p className="text-xs sm:text-sm text-zinc-500 max-w-xl mx-auto mt-6 text-balance text-center font-normal leading-relaxed">
+            Essenziat Digital is a performance-first digital studio specializing in bespoke web development, high-concurrency software architectures, and precision UI/UX design systems.
+          </p>
         </motion.div>
 
         {/* Interactive Craft Rating Widget */}
