@@ -29,24 +29,41 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-400">
                 Firm / Studio
               </span>
-              <motion.a
-                href="https://www.instagram.com/essenziat.digital/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Essenziat Digital Official Instagram"
-                aria-label="Essenziat Digital Instagram"
-                whileHover={{ y: -1 }}
-                whileTap={{ scale: 0.96 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 text-zinc-700 hover:text-zinc-950 text-xs font-medium transition-all shadow-2xs group"
-              >
-                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current text-zinc-500 group-hover:text-brand-blue transition-colors" aria-hidden="true">
-                  <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.88 1.62a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
-                </svg>
-                <span>@essenziat.digital</span>
-                <span className="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded bg-brand-blue/10 text-brand-blue tracking-wider">
-                  Firm
-                </span>
-              </motion.a>
+              <div className="flex items-center gap-1.5">
+                <motion.a
+                  href="https://www.instagram.com/essenziat.digital/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Essenziat Digital Official Instagram"
+                  aria-label="Essenziat Digital Instagram"
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 text-zinc-700 hover:text-zinc-950 text-xs font-medium transition-all shadow-2xs group"
+                >
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current text-zinc-500 group-hover:text-brand-blue transition-colors" aria-hidden="true">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.88 1.62a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+                  </svg>
+                  <span>@essenziat.digital</span>
+                  <span className="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded bg-brand-blue/10 text-brand-blue tracking-wider">
+                    Firm
+                  </span>
+                </motion.a>
+
+                <motion.a
+                  href="https://www.linkedin.com/in/essenziat-digital-738ba7450/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Essenziat Digital on LinkedIn"
+                  aria-label="Essenziat Digital on LinkedIn"
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="w-8 h-8 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 flex items-center justify-center text-zinc-600 hover:text-[#0A66C2] transition-colors shadow-2xs"
+                >
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" aria-hidden="true">
+                    <path d="M6.5 8.5A1.75 1.75 0 1 1 6.5 5a1.75 1.75 0 0 1 0 3.5ZM5 10h3v9H5v-9Zm5 0h2.9v1.3h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.6 2 3.6 4.7V19h-3v-4c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V19h-3v-9Z" />
+                  </svg>
+                </motion.a>
+              </div>
             </div>
 
             {/* Founder / Personal Channels */}

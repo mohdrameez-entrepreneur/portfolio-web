@@ -139,9 +139,24 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                <div className="pt-3.5 sm:pt-4 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 text-xs text-zinc-500">
+                <div className="pt-3.5 sm:pt-4 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2 text-xs text-zinc-500">
                   <span className="font-semibold text-zinc-900">Founder & Studio Direction</span>
-                  <span className="text-brand-blue font-medium">End-to-End System Ownership</span>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="https://www.linkedin.com/in/mohdram33z/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-zinc-600 hover:text-[#0A66C2] transition-colors font-medium text-xs"
+                      title="Mohd Rameez on LinkedIn"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-3 w-3 fill-current" aria-hidden="true">
+                        <path d="M6.5 8.5A1.75 1.75 0 1 1 6.5 5a1.75 1.75 0 0 1 0 3.5ZM5 10h3v9H5v-9Zm5 0h2.9v1.3h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.6 2 3.6 4.7V19h-3v-4c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V19h-3v-9Z" />
+                      </svg>
+                      <span>LinkedIn ↗</span>
+                    </a>
+                    <span>·</span>
+                    <span className="text-brand-blue font-medium">End-to-End System Ownership</span>
+                  </div>
                 </div>
               </div>
             </div>
