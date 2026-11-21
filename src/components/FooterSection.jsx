@@ -23,13 +23,13 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
           </div>
 
           {/* Distinct Studio & Founder Social Channels */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          <div className="flex flex-col xl:flex-row items-start xl:items-center gap-5 sm:gap-6">
             {/* Firm / Studio Channel */}
             <div className="flex flex-col gap-1.5">
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-400">
                 Firm / Studio
               </span>
-              <div className="flex items-center gap-1.5">
+              <div className="flex flex-wrap items-center gap-2">
                 <motion.a
                   href="https://www.instagram.com/essenziat.digital/"
                   target="_blank"
@@ -53,15 +53,19 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
                   href="https://www.linkedin.com/in/essenziat-digital-738ba7450/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Essenziat Digital on LinkedIn"
-                  aria-label="Essenziat Digital on LinkedIn"
+                  title="Essenziat Digital Official LinkedIn"
+                  aria-label="Essenziat Digital LinkedIn"
                   whileHover={{ y: -1 }}
                   whileTap={{ scale: 0.96 }}
-                  className="w-8 h-8 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 flex items-center justify-center text-zinc-600 hover:text-[#0A66C2] transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 text-zinc-700 hover:text-zinc-950 text-xs font-medium transition-all shadow-2xs group"
                 >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-[#0A66C2] group-hover:scale-105 transition-transform" aria-hidden="true">
                     <path d="M6.5 8.5A1.75 1.75 0 1 1 6.5 5a1.75 1.75 0 0 1 0 3.5ZM5 10h3v9H5v-9Zm5 0h2.9v1.3h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.6 2 3.6 4.7V19h-3v-4c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V19h-3v-9Z" />
                   </svg>
+                  <span>Essenziat Digital</span>
+                  <span className="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded bg-brand-blue/10 text-brand-blue tracking-wider">
+                    Firm
+                  </span>
                 </motion.a>
               </div>
             </div>
@@ -71,7 +75,7 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-400">
                 Founder
               </span>
-              <div className="flex items-center gap-1.5">
+              <div className="flex flex-wrap items-center gap-2">
                 <motion.a
                   href="https://www.instagram.com/mohd.ram33z/"
                   target="_blank"
@@ -95,15 +99,19 @@ export default function FooterSection({ BrandMarkComponent, brandLogo }) {
                   href="https://www.linkedin.com/in/mohdram33z/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Mohd Rameez on LinkedIn"
-                  aria-label="Mohd Rameez on LinkedIn"
+                  title="Mohd Rameez Personal LinkedIn"
+                  aria-label="Mohd Rameez LinkedIn"
                   whileHover={{ y: -1 }}
                   whileTap={{ scale: 0.96 }}
-                  className="w-8 h-8 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 flex items-center justify-center text-zinc-600 hover:text-[#0A66C2] transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/[0.08] bg-zinc-50 hover:bg-white hover:border-black/20 text-zinc-700 hover:text-zinc-950 text-xs font-medium transition-all shadow-2xs group"
                 >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-[#0A66C2] group-hover:scale-105 transition-transform" aria-hidden="true">
                     <path d="M6.5 8.5A1.75 1.75 0 1 1 6.5 5a1.75 1.75 0 0 1 0 3.5ZM5 10h3v9H5v-9Zm5 0h2.9v1.3h.1c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.6 2 3.6 4.7V19h-3v-4c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V19h-3v-9Z" />
                   </svg>
+                  <span>Mohd Rameez</span>
+                  <span className="text-[9px] font-semibold uppercase px-1.5 py-0.5 rounded bg-brand-gold/15 text-brand-gold tracking-wider">
+                    Personal
+                  </span>
                 </motion.a>
 
                 <motion.a
