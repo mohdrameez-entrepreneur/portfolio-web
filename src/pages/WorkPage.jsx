@@ -4,12 +4,34 @@ import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
 import cruvoShowcase from '../../ext-resources/images/cruvo-showcase.jpg';
 import ruhverseShowcase from '../../ext-resources/images/ruhverse-showcase.jpg';
 import udyvoShowcase from '../../ext-resources/images/udyvo-showcase.jpg';
+import erpShowcase from '../../ext-resources/images/essenziat-erp-showcase.jpg';
 import tttMain from '../../ext-resources/images/TTT.png';
 import vfMain from '../../ext-resources/images/VF.png';
 import SiteHeader from '../components/SiteHeader';
 import { ContactModal, FullscreenPreviewModal, RequestSubmittedModal } from '../components/Modals';
 
 const WORK_ITEMS = [
+  {
+    id: 'essenziat-erp',
+    title: 'Essenziat ERP',
+    tagline: 'Business Operations, Simplified.',
+    category: 'Software & Web',
+    discipline: 'Enterprise Operations & Inventory Management OS',
+    badge: 'FLAGSHIP PLATFORM',
+    image: erpShowcase,
+    alt: 'Essenziat ERP - Executive Dashboard and Complete Inventory Management OS',
+    siteUrl: '',
+    status: 'Operational ERP',
+    metric: 'Multi-Warehouse · Live Transit & Dispatch',
+    summary: 'A complete, full-suite business and inventory management OS engineered to centralize stock valuation, multi-warehouse logistics, automated procurement POs, and end-to-end delivery transit tracking with live rider sync and e-waybill verification.',
+    highlights: [
+      'Multi-warehouse inventory tracking with real-time valuation and zero-stock alerts',
+      'Integrated delivery status monitor with live rider sync and e-waybill transit tracking',
+      'Automated procurement workflows and vendor purchase order (PO) pipelines',
+      'Executive dashboard tracking live revenue, gross margins, and category capital distribution'
+    ],
+    techStack: ['React / TypeScript', 'Node.js / Express', 'PostgreSQL', 'Tailwind CSS', 'Supply Chain OS', 'Analytics']
+  },
   {
     id: 'udyvo',
     title: 'Udyvo',

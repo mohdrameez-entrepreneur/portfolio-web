@@ -4,6 +4,7 @@ import brandLogo from '../../ext-resources/logos/essenziat-digital-logo.jpeg';
 import ruhverseShowcase from '../../ext-resources/images/ruhverse-showcase.jpg';
 import cruvoShowcase from '../../ext-resources/images/cruvo-showcase.jpg';
 import udyvoShowcase from '../../ext-resources/images/udyvo-showcase.jpg';
+import erpShowcase from '../../ext-resources/images/essenziat-erp-showcase.jpg';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import ProjectsSection from '../components/ProjectsSection';
@@ -15,6 +16,16 @@ import SiteHeader from '../components/SiteHeader';
 import { getRatings, submitRating } from "../API/rating";
 
 const projects = [
+  {
+    title: 'Essenziat ERP',
+    tag: 'Enterprise OS · Full Inventory & Delivery',
+    discipline: 'Enterprise Operations & Inventory Management OS',
+    image: erpShowcase,
+    alt: 'Essenziat ERP - Complete Inventory and Delivery Management OS',
+    siteUrl: '',
+    description: 'A full-suite operations and inventory management OS engineered with live stock valuation, warehouse tracking, automated procurement, and real-time delivery dispatch status.',
+    metric: 'Full Inventory OS · Live Transit'
+  },
   {
     title: 'Udyvo',
     tag: 'SaaS Platform · B2B Subscription CRM',
